@@ -6,8 +6,8 @@ import dao.UserDAO;
 public class XMLUserDAO implements UserDAO {
 
     @Override
-    public void signIn(String login, String password) {
-
+    public User signIn(String login, String password) {
+        return null;
     }
 
     @Override

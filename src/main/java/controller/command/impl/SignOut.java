@@ -2,6 +2,7 @@ package controller.command.impl;
 
 import controller.command.Command;
 import service.ClientService;
+import service.exeption.ServiceException;
 import service.factory.ServiceFactory;
 
 public class SignOut implements Command {
@@ -15,8 +16,10 @@ public class SignOut implements Command {
             ClientService clientService = serviceFactory.getClientService();
             clientService.signOut(login);
             response = "Good buy";
-        } catch (Exception e) {
-            response = "Error during logout procedure. " + e.getMessage();
+        } catch (IndexOutOfBoundsException e) {
+            response = "Error during login procedure";
+        } catch (ServiceException e) {
+            response = "Error during login procedure. " + e.getMessage();
         }
         return response;
     }

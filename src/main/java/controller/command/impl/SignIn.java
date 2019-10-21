@@ -2,6 +2,7 @@ package controller.command.impl;
 
 import controller.command.Command;
 import service.ClientService;
+import service.exeption.ServiceException;
 import service.factory.ServiceFactory;
 
 public class SignIn implements Command {
@@ -16,7 +17,9 @@ public class SignIn implements Command {
             ClientService clientService = serviceFactory.getClientService();
             clientService.signIn(login, password);
             response = "Welcome";
-        } catch (Exception e) {
+        } catch (IndexOutOfBoundsException e) {
+            response = "Error during login procedure";
+        } catch (ServiceException e) {
             response = "Error during login procedure. " + e.getMessage();
         }
         return response;
