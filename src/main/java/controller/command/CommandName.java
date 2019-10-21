@@ -1,0 +1,7 @@
+package controller.command;
+
+public enum CommandName {
+
+    SIGN_IN, SIGN_OUT, REGISTRATION, ADD_NEW_EDITION, ADD_EDITED_EDITION, DELETE_EDITION, DELETE, WRONG_REQUEST
+
+}

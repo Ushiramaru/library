@@ -34,7 +34,7 @@ public abstract class Edition {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Edition)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Edition edition = (Edition) o;
         return id == edition.id &&
                 title.equals(edition.title);

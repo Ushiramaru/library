@@ -5,7 +5,6 @@ import java.util.Objects;
 
 public class User implements Serializable {
 
-    private long id;
     private String login;
     private String password;
     private int age;
@@ -14,19 +13,10 @@ public class User implements Serializable {
 
     }
 
-    public User(int id, String login, String password, int age) {
-        this.id = id;
+    public User(String login, String password, int age) {
         this.login = login;
         this.password = password;
         this.age = age;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getLogin() {
@@ -58,22 +48,20 @@ public class User implements Serializable {
         if (this == o) return true;
         if (getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id &&
-                age == user.age &&
+        return age == user.age &&
                 login.equals(user.login) &&
                 password.equals(user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, password, age);
+        return Objects.hash(login, password, age);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", login='" + login + '\'' +
+                "login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", age=" + age +
                 '}';

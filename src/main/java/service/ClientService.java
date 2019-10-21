@@ -1,11 +1,15 @@
 package service;
 
 import bean.User;
+import dao.exception.DAOException;
+import service.exeption.ServiceException;
 
 public interface ClientService {
 
-    void singIn(String login, String password);
-    void singOut(String login);
-    void registration(User user);
+    void signIn(String login, String password) throws ServiceException;
+
+    void signOut(String login) throws ServiceException;
+
+    void registration(User user) throws ServiceException;
 
 }
