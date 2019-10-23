@@ -5,6 +5,7 @@ import bean.Edition;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 @XmlRootElement(name = "editions")
 public final class EditionsList {
@@ -24,8 +25,12 @@ public final class EditionsList {
         return editions.add(edition);
     }
 
-    public boolean deleteEdition(Edition edition) {
-        return editions.remove(edition);
+    public void deleteEdition(long id) {
+        editions.removeIf(edition -> edition.getId() == id);
+    }
+
+    public void sort(Comparator<Edition> comparator) {
+        editions.sort(comparator);
     }
 
 }

@@ -11,6 +11,4 @@ public interface LibraryService {
 
     void deleteEdition(long id) throws ServiceException;
 
-    void delete(Edition edition) throws ServiceException;
-
 }

@@ -7,8 +7,8 @@ public interface EditionDAO {
 
     void addEdition(Edition edition) throws DAOException;
 
-    void deleteEdition(long id) throws DAOException;
+    void editedEdition(long id, Edition edition) throws DAOException;
 
-    void delete(Edition edition) throws DAOException;
+    void deleteEdition(long id) throws DAOException;
 
 }

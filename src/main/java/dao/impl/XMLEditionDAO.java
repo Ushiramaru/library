@@ -1,10 +1,9 @@
 package dao.impl;
 
 import bean.*;
-import bean.enums.Genre;
-import bean.enums.ListFormat;
 import dao.EditionDAO;
 import dao.EditionsList;
+import dao.exception.DAOException;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -14,7 +13,6 @@ import java.io.File;
 import java.net.URISyntaxException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class XMLEditionDAO implements EditionDAO {
 
@@ -24,13 +22,6 @@ public class XMLEditionDAO implements EditionDAO {
     private Marshaller marshaller;
 
     private EditionsList editions;
-
-    public static void main(String[] args) {
-        XMLEditionDAO xmlEditionDAO = new XMLEditionDAO();
-        xmlEditionDAO.editions.addEdition(new Book(1, "title", ListFormat.A1, 10, new Date(), Genre.DETECTIVE));
-        xmlEditionDAO.editions.addEdition(new Book(2, "title1", ListFormat.A4, 20, new Date(), Genre.FANTASY));
-        xmlEditionDAO.write();
-    }
 
     public XMLEditionDAO() {
         try {
@@ -51,7 +42,7 @@ public class XMLEditionDAO implements EditionDAO {
             editions = (EditionsList) unmarshaller.unmarshal(new File(FULL_FILE_PATH));
         } catch (JAXBException e) {
             editions = new EditionsList();
-            editions.setEditions(new ArrayList<Edition>());
+            editions.setEditions(new ArrayList<>());
         }
     }
 
@@ -64,18 +55,32 @@ public class XMLEditionDAO implements EditionDAO {
     }
 
     @Override
-    public void addEdition(Edition edition) {
+    public void addEdition(Edition edition) throws DAOException {
+        for (Edition edition1 : editions.getEditions()) {
+            if (edition.getId() == edition1.getId()) {
+                throw new DAOException("Edition with " + edition.getId() + " id exist");
+            }
+        }
+        editions.addEdition(edition);
+        write();
+    }
 
+    @Override
+    public void editedEdition(long id, Edition edition) throws DAOException {
+        for (Edition edition1 : editions.getEditions()) {
+            if (edition.getId() == edition1.getId() && edition1.getId() != id) {
+                throw new DAOException("Edition with " + edition.getId() + " id exist");
+            }
+        }
+        editions.deleteEdition(id);
+        editions.addEdition(edition);
+        write();
     }
 
     @Override
     public void deleteEdition(long id) {
-
-    }
-
-    @Override
-    public void delete(Edition edition) {
-
+        editions.deleteEdition(id);
+        write();
     }
 
 }
