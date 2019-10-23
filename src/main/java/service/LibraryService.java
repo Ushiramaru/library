@@ -7,7 +7,7 @@ public interface LibraryService {
 
     void addNewEdition(Edition edition) throws ServiceException;
 
-    void addEditedEdition(Edition edition) throws ServiceException;
+    void editedEdition(long id, Edition edition) throws ServiceException;
 
     void deleteEdition(long id) throws ServiceException;
 

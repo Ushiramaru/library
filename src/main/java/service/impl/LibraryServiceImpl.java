@@ -14,25 +14,28 @@ public class LibraryServiceImpl implements LibraryService {
         if (edition == null) {
             throw new ServiceException("Unknown edition's type");
         }
-        DAOFactory daoFactory = DAOFactory.getInstance();
-        EditionDAO editionDAO = daoFactory.getXmlEditionDAO();
+
+        DAOFactory factory = DAOFactory.getInstance();
+        EditionDAO dao = factory.getXmlEditionDAO();
+
         try {
-            editionDAO.addEdition(edition);
+            dao.addEdition(edition);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
     }
 
     @Override
-    public void addEditedEdition(Edition edition) throws ServiceException {
+    public void editedEdition(long id, Edition edition) throws ServiceException {
         if (edition == null) {
             throw new ServiceException("Unknown edition's type");
         }
-        DAOFactory daoFactory = DAOFactory.getInstance();
-        EditionDAO editionDAO = daoFactory.getXmlEditionDAO();
+
+        DAOFactory factory = DAOFactory.getInstance();
+        EditionDAO dao = factory.getXmlEditionDAO();
+
         try {
-            editionDAO.deleteEdition(edition.getId());
-            editionDAO.addEdition(edition);
+            dao.editedEdition(id, edition);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -41,10 +44,11 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public void deleteEdition(long id) throws ServiceException {
-        DAOFactory daoFactory = DAOFactory.getInstance();
-        EditionDAO editionDAO = daoFactory.getXmlEditionDAO();
+        DAOFactory factory = DAOFactory.getInstance();
+        EditionDAO dao = factory.getXmlEditionDAO();
+
         try {
-            editionDAO.deleteEdition(id);
+            dao.deleteEdition(id);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }

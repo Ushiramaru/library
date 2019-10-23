@@ -27,10 +27,16 @@ public class ClientServiceImpl implements ClientService {
         if (password == null || password.isEmpty()) {
             throw new PasswordException("Incorrect password");
         }
-        DAOFactory daoFactory = DAOFactory.getInstance();
-        UserDAO userDAO = daoFactory.getXmlUserImpl();
+        DAOFactory factory = DAOFactory.getInstance();
+        UserDAO dao = factory.getXmlUserImpl();
+
         try {
-            User loginUser = userDAO.signIn(login, password);
+            for (User user : loginUsers) {
+                if (user.getLogin().equals(login)) {
+                    throw new ServiceException(login + " already signIn");
+                }
+            }
+            User loginUser = dao.signIn(login, password);
             loginUsers.add(loginUser);
         } catch (DAOException e) {
             throw new ServiceException(e);
@@ -68,10 +74,11 @@ public class ClientServiceImpl implements ClientService {
         if (user.getAge() < VALID_MIN_AGE) {
             throw new ServiceException("Incorrect age. You must be at least " + VALID_MIN_AGE + " years old");
         }
-        DAOFactory daoFactory = DAOFactory.getInstance();
-        UserDAO userDAO = daoFactory.getXmlUserImpl();
+        DAOFactory factory = DAOFactory.getInstance();
+        UserDAO dao = factory.getXmlUserImpl();
+
         try {
-            userDAO.registration(user);
+            dao.registration(user);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
