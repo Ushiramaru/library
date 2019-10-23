@@ -4,7 +4,6 @@ import bean.enums.ListFormat;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import java.util.Date;
 import java.util.Objects;
 
 @XmlType(name = "printEdition")
@@ -12,17 +11,17 @@ public abstract class PrintEdition extends Edition {
 
     private ListFormat listFormat;
     private int listCount;
-    private Date publicationDate;
+    private int publicationYear;
 
     public PrintEdition() {
 
     }
 
-    public PrintEdition(long id, String title, ListFormat listFormat, int listCount, Date publicationDate) {
+    public PrintEdition(long id, String title, ListFormat listFormat, int listCount, int publicationDate) {
         super(id, title);
         this.listFormat = listFormat;
         this.listCount = listCount;
-        this.publicationDate = publicationDate;
+        this.publicationYear = publicationDate;
     }
 
     public ListFormat getListFormat() {
@@ -43,13 +42,13 @@ public abstract class PrintEdition extends Edition {
         this.listCount = listCount;
     }
 
-    public Date getPublicationDate() {
-        return publicationDate;
+    public int getPublicationYear() {
+        return publicationYear;
     }
 
-    @XmlElement(name = "publicationDate")
-    public void setPublicationDate(Date publicationDate) {
-        this.publicationDate = publicationDate;
+    @XmlElement(name = "publicationYear")
+    public void setPublicationYear(int publicationYear) {
+        this.publicationYear = publicationYear;
     }
 
     @Override
@@ -60,12 +59,12 @@ public abstract class PrintEdition extends Edition {
         PrintEdition that = (PrintEdition) o;
         return listCount == that.listCount &&
                 listFormat == that.listFormat &&
-                publicationDate.equals(that.publicationDate);
+                publicationYear == that.publicationYear;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), listFormat, listCount, publicationDate);
+        return Objects.hash(super.hashCode(), listFormat, listCount, publicationYear);
     }
 
     @Override
@@ -73,7 +72,7 @@ public abstract class PrintEdition extends Edition {
         return "PrintEdition{" +
                 "listFormat=" + listFormat +
                 ", listCount=" + listCount +
-                ", publicationDate=" + publicationDate +
+                ", publicationYear=" + publicationYear +
                 "} " + super.toString();
     }
 

@@ -5,7 +5,6 @@ import bean.enums.ListFormat;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import java.util.Date;
 import java.util.Objects;
 
 @XmlType(name = "encyclopedia")
@@ -17,7 +16,7 @@ public class Encyclopedia extends PrintEdition {
 
     }
 
-    public Encyclopedia(long id, String title, ListFormat listFormat, int listCount, Date publicationDate, EncyclopediaType encyclopediaType) {
+    public Encyclopedia(long id, String title, ListFormat listFormat, int listCount, int publicationDate, EncyclopediaType encyclopediaType) {
         super(id, title, listFormat, listCount, publicationDate);
         this.encyclopediaType = encyclopediaType;
     }

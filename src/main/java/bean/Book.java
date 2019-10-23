@@ -5,7 +5,6 @@ import bean.enums.ListFormat;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import java.util.Date;
 import java.util.Objects;
 
 @XmlType(name = "book")
@@ -17,7 +16,7 @@ public class Book extends PrintEdition {
 
     }
 
-    public Book(long id, String title, ListFormat listFormat, int listCount, Date publicationDate, Genre genre) {
+    public Book(long id, String title, ListFormat listFormat, int listCount, int publicationDate, Genre genre) {
         super(id, title, listFormat, listCount, publicationDate);
         this.genre = genre;
     }

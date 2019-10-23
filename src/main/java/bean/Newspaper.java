@@ -5,7 +5,6 @@ import bean.enums.NewspaperType;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import java.util.Date;
 import java.util.Objects;
 
 @XmlType(name = "newspaper")
@@ -17,7 +16,7 @@ public class Newspaper extends PrintEdition {
 
     }
 
-    public Newspaper(long id, String title, ListFormat listFormat, int listCount, Date publicationDate, NewspaperType newspaperType) {
+    public Newspaper(long id, String title, ListFormat listFormat, int listCount, int publicationDate, NewspaperType newspaperType) {
         super(id, title, listFormat, listCount, publicationDate);
         this.newspaperType = newspaperType;
     }
