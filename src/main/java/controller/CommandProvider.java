@@ -15,10 +15,9 @@ final class CommandProvider {
         repository.put(CommandName.SIGN_IN, new SignIn());
         repository.put(CommandName.SIGN_OUT, new SignOut());
         repository.put(CommandName.REGISTRATION, new Registration());
-        repository.put(CommandName.ADD_NEW_EDITION, new AddNewEdition());
-        repository.put(CommandName.ADD_EDITED_EDITION, new AddEditedEdition());
+        repository.put(CommandName.ADD_NEW_PRINT_EDITION, new AddNewPrintEdition());
+        repository.put(CommandName.ADD_EDITED_PRINT_EDITION, new AddEditedPrintEdition());
         repository.put(CommandName.DELETE_EDITION, new DeleteEdition());
-        repository.put(CommandName.DELETE, new Delete());
         repository.put(CommandName.WRONG_REQUEST, new WrongRequest());
     }
 

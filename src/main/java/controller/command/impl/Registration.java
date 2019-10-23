@@ -22,9 +22,11 @@ public class Registration implements Command {
 
             indexEnd++;
             int age = Integer.valueOf(request.substring(indexEnd));
-            ServiceFactory serviceFactory = ServiceFactory.getInstance();
-            ClientService clientService = serviceFactory.getClientService();
-            clientService.signIn(login, password);
+
+            ServiceFactory factory = ServiceFactory.getInstance();
+            ClientService service = factory.getClientService();
+
+            service.registration(new User(login, password, age));
             response = "Registration completed";
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             response = "Error during registration procedure";

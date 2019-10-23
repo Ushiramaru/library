@@ -13,9 +13,11 @@ public class SignIn implements Command {
         try {
             String login = request.substring(request.indexOf(paramDelimiter) + 1, request.lastIndexOf(paramDelimiter));
             String password = request.substring(request.lastIndexOf(paramDelimiter) + 1);
-            ServiceFactory serviceFactory = ServiceFactory.getInstance();
-            ClientService clientService = serviceFactory.getClientService();
-            clientService.signIn(login, password);
+
+            ServiceFactory factory = ServiceFactory.getInstance();
+            ClientService service = factory.getClientService();
+
+            service.signIn(login, password);
             response = "Welcome";
         } catch (IndexOutOfBoundsException e) {
             response = "Error during login procedure";

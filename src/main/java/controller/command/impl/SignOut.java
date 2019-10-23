@@ -12,9 +12,11 @@ public class SignOut implements Command {
         String response;
         try {
             String login = request.substring(request.indexOf(paramDelimiter) + 1, request.lastIndexOf(paramDelimiter));
-            ServiceFactory serviceFactory = ServiceFactory.getInstance();
-            ClientService clientService = serviceFactory.getClientService();
-            clientService.signOut(login);
+
+            ServiceFactory factory = ServiceFactory.getInstance();
+            ClientService service = factory.getClientService();
+
+            service.signOut(login);
             response = "Good buy";
         } catch (IndexOutOfBoundsException e) {
             response = "Error during login procedure";
