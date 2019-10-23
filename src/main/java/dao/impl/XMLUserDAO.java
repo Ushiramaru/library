@@ -23,13 +23,6 @@ public class XMLUserDAO implements UserDAO {
 
     private UsersList users;
 
-    public static void main(String[] args) {
-        XMLUserDAO xmlUserDAO  = new XMLUserDAO();
-        xmlUserDAO.users.addUser(new User("login", "password", 14));
-        xmlUserDAO.users.addUser(new User("login1", "password1", 15));
-        xmlUserDAO.write();
-    }
-
     public XMLUserDAO() {
         try {
             FULL_FILE_PATH = String.valueOf(Paths.get(XMLUserDAO.class.getResource(FILE_PATH).toURI()).toAbsolutePath());
