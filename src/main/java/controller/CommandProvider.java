@@ -16,14 +16,14 @@ final class CommandProvider {
         repository.put(CommandName.SIGN_OUT, new SignOut());
         repository.put(CommandName.REGISTRATION, new Registration());
         repository.put(CommandName.ADD_NEW_PRINT_EDITION, new AddNewPrintEdition());
-        repository.put(CommandName.ADD_EDITED_PRINT_EDITION, new AddEditedPrintEdition());
+        repository.put(CommandName.EDITED_PRINT_EDITION, new EditedPrintEdition());
         repository.put(CommandName.DELETE_EDITION, new DeleteEdition());
         repository.put(CommandName.WRONG_REQUEST, new WrongRequest());
     }
 
     Command getCommand(String name) {
-        CommandName commandName = null;
-        Command command = null;
+        CommandName commandName;
+        Command command;
         try {
             commandName = CommandName.valueOf(name.toUpperCase());
             command = repository.get(commandName);
