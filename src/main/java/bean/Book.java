@@ -3,9 +3,12 @@ package bean;
 import bean.enums.Genre;
 import bean.enums.ListFormat;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Date;
 import java.util.Objects;
 
+@XmlType(name = "book")
 public class Book extends PrintEdition {
 
     private Genre genre;
@@ -23,6 +26,7 @@ public class Book extends PrintEdition {
         return genre;
     }
 
+    @XmlElement(name = "genre")
     public void setGenre(Genre genre) {
         this.genre = genre;
     }

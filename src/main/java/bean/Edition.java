@@ -1,7 +1,11 @@
 package bean;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
+@XmlType(name = "edition")
 public abstract class Edition {
 
     private long id;
@@ -19,6 +23,7 @@ public abstract class Edition {
         return id;
     }
 
+    @XmlAttribute(name = "id")
     public void setId(long id) {
         this.id = id;
     }
@@ -27,6 +32,7 @@ public abstract class Edition {
         return title;
     }
 
+    @XmlElement(name = "title")
     public void setTitle(String title) {
         this.title = title;
     }

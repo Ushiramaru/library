@@ -3,9 +3,12 @@ package bean;
 import bean.enums.ListFormat;
 import bean.enums.NewspaperType;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Date;
 import java.util.Objects;
 
+@XmlType(name = "newspaper")
 public class Newspaper extends PrintEdition {
 
     private NewspaperType newspaperType;
@@ -23,6 +26,7 @@ public class Newspaper extends PrintEdition {
         return newspaperType;
     }
 
+    @XmlElement(name = "newspaperType")
     public void setNewspaperType(NewspaperType newspaperType) {
         this.newspaperType = newspaperType;
     }

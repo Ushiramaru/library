@@ -3,9 +3,12 @@ package bean;
 import bean.enums.EncyclopediaType;
 import bean.enums.ListFormat;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Date;
 import java.util.Objects;
 
+@XmlType(name = "encyclopedia")
 public class Encyclopedia extends PrintEdition {
 
     private EncyclopediaType encyclopediaType;
@@ -23,6 +26,7 @@ public class Encyclopedia extends PrintEdition {
         return encyclopediaType;
     }
 
+    @XmlElement(name = "encyclopediaType")
     public void setEncyclopediaType(EncyclopediaType encyclopediaType) {
         this.encyclopediaType = encyclopediaType;
     }

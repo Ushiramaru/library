@@ -2,9 +2,12 @@ package bean;
 
 import bean.enums.ListFormat;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Date;
 import java.util.Objects;
 
+@XmlType(name = "printEdition")
 public abstract class PrintEdition extends Edition {
 
     private ListFormat listFormat;
@@ -26,6 +29,7 @@ public abstract class PrintEdition extends Edition {
         return listFormat;
     }
 
+    @XmlElement(name = "listFormat")
     public void setListFormat(ListFormat listFormat) {
         this.listFormat = listFormat;
     }
@@ -34,6 +38,7 @@ public abstract class PrintEdition extends Edition {
         return listCount;
     }
 
+    @XmlElement(name = "listCount")
     public void setListCount(int listCount) {
         this.listCount = listCount;
     }
@@ -42,6 +47,7 @@ public abstract class PrintEdition extends Edition {
         return publicationDate;
     }
 
+    @XmlElement(name = "publicationDate")
     public void setPublicationDate(Date publicationDate) {
         this.publicationDate = publicationDate;
     }
