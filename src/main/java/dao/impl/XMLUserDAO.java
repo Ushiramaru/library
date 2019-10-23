@@ -41,7 +41,7 @@ public class XMLUserDAO implements UserDAO {
             users = (UsersList) unmarshaller.unmarshal(new File(FULL_FILE_PATH));
         } catch (JAXBException e) {
             users = new UsersList();
-            users.setUsers(new ArrayList<User>());
+            users.setUsers(new ArrayList<>());
         }
     }
 
