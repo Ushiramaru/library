@@ -1,9 +1,12 @@
 package bean;
 
-import java.io.Serializable;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
-public class User implements Serializable {
+@XmlType(name = "user")
+public class User {
 
     private String login;
     private String password;
@@ -23,6 +26,7 @@ public class User implements Serializable {
         return login;
     }
 
+    @XmlElement(name = "login")
     public void setLogin(String login) {
         this.login = login;
     }
@@ -31,6 +35,7 @@ public class User implements Serializable {
         return password;
     }
 
+    @XmlElement(name = "password")
     public void setPassword(String password) {
         this.password = password;
     }
@@ -39,6 +44,7 @@ public class User implements Serializable {
         return age;
     }
 
+    @XmlAttribute(name = "age")
     public void setAge(int age) {
         this.age = age;
     }

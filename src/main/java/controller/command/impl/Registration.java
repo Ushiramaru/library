@@ -22,7 +22,6 @@ public class Registration implements Command {
 
             indexEnd++;
             int age = Integer.valueOf(request.substring(indexEnd));
-            User user = new User(login, password, age);
             ServiceFactory serviceFactory = ServiceFactory.getInstance();
             ClientService clientService = serviceFactory.getClientService();
             clientService.signIn(login, password);
