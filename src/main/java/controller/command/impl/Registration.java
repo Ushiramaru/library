@@ -31,7 +31,7 @@ public class Registration implements Command {
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             response = "Error during registration procedure";
         } catch (ServiceException e) {
-            response = "Error during registration procedure. " + e.getMessage();
+            response = "Error during registration procedure. " + e.getMessage().substring(e.getMessage().indexOf(paramDelimiter) + 1);
         }
         return response;
     }

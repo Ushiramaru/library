@@ -15,12 +15,16 @@ public class EditedPrintEdition implements Command {
         try {
             int indexStart = request.indexOf(paramDelimiter) + 1;
             int indexEnd = request.indexOf(paramDelimiter, indexStart);
-            EditionType type = EditionType.valueOf(request.substring(indexStart, indexEnd));
+            long id = Long.valueOf(request.substring(indexStart, indexEnd));
+
+            indexStart = indexEnd + 1;
+            indexEnd = request.indexOf(paramDelimiter, indexStart);
+            EditionType type = EditionType.valueOf(request.substring(indexStart, indexEnd).toUpperCase());
 
 
             indexStart = indexEnd + 1;
             indexEnd = request.indexOf(paramDelimiter, indexStart);
-            long id = Long.valueOf(request.substring(indexStart, indexEnd));
+            long newId = Long.valueOf(request.substring(indexStart, indexEnd));
 
             indexStart = indexEnd + 1;
             indexEnd = request.indexOf(paramDelimiter, indexStart);
@@ -42,15 +46,15 @@ public class EditedPrintEdition implements Command {
             switch (type) {
                 case BOOK:
                     Genre genre = Genre.valueOf(request.substring(indexEnd + 1).toUpperCase());
-                    edition = new Book(id, title, listFormat, listCount, publicationYear, genre);
+                    edition = new Book(newId, title, listFormat, listCount, publicationYear, genre);
                     break;
                 case NEWSPAPER:
                     NewspaperType newspaperType = NewspaperType.valueOf(request.substring(indexEnd + 1).toUpperCase());
-                    edition = new Newspaper(id, title, listFormat, listCount, publicationYear, newspaperType);
+                    edition = new Newspaper(newId, title, listFormat, listCount, publicationYear, newspaperType);
                     break;
                 case ENCYCLOPEDIA:
                     EncyclopediaType encyclopediaType = EncyclopediaType.valueOf(request.substring(indexEnd + 1).toUpperCase());
-                    edition = new Encyclopedia(id, title, listFormat, listCount, publicationYear, encyclopediaType);
+                    edition = new Encyclopedia(newId, title, listFormat, listCount, publicationYear, encyclopediaType);
                     break;
                 default:
                     edition = null;
@@ -59,12 +63,12 @@ public class EditedPrintEdition implements Command {
             ServiceFactory factory = ServiceFactory.getInstance();
             LibraryService service = factory.getLibraryService();
 
-            service.addNewEdition(edition);
+            service.editedEdition(id, edition);
             response = "Edited completed";
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             response = "Error during Edited procedure";
         } catch (ServiceException e) {
-            response = "Error during Edited procedure" + e.getMessage();
+            response = "Error during Edited procedure. " + e.getMessage().substring(e.getMessage().indexOf(paramDelimiter) + 1);
         }
 
         return response;

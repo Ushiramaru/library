@@ -15,8 +15,7 @@ public class AddNewPrintEdition implements Command {
         try {
             int indexStart = request.indexOf(paramDelimiter) + 1;
             int indexEnd = request.indexOf(paramDelimiter, indexStart);
-            EditionType type = EditionType.valueOf(request.substring(indexStart, indexEnd));
-
+            EditionType type = EditionType.valueOf(request.substring(indexStart, indexEnd).toUpperCase());
 
             indexStart = indexEnd + 1;
             indexEnd = request.indexOf(paramDelimiter, indexStart);
@@ -63,8 +62,10 @@ public class AddNewPrintEdition implements Command {
             response = "Added completed";
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             response = "Error during added procedure";
+        } catch (IllegalArgumentException e) {
+            response = "Illegal arguments";
         } catch (ServiceException e) {
-            response = "Error during added procedure" + e.getMessage();
+            response = "Error during added procedure. " + e.getMessage().substring(e.getMessage().indexOf(paramDelimiter) + 1);
         }
 
         return response;

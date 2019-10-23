@@ -21,7 +21,7 @@ public class DeleteEdition implements Command {
         } catch (NumberFormatException e) {
             response = "Incorrect id";
         } catch (ServiceException e) {
-            response = "Error during deleted procedure" + e.getMessage();
+            response = "Error during deleted procedure. " + e.getMessage().substring(e.getMessage().indexOf(paramDelimiter) + 1);
         }
         return response;
     }

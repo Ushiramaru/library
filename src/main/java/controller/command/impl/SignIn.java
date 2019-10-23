@@ -22,7 +22,7 @@ public class SignIn implements Command {
         } catch (IndexOutOfBoundsException e) {
             response = "Error during login procedure";
         } catch (ServiceException e) {
-            response = "Error during login procedure. " + e.getMessage();
+            response = "Error during login procedure. " + e.getMessage().substring(e.getMessage().indexOf(paramDelimiter) + 1);
         }
         return response;
     }

@@ -11,7 +11,7 @@ public class SignOut implements Command {
     public String execute(String request) {
         String response;
         try {
-            String login = request.substring(request.indexOf(paramDelimiter) + 1, request.lastIndexOf(paramDelimiter));
+            String login = request.substring(request.indexOf(paramDelimiter) + 1);
 
             ServiceFactory factory = ServiceFactory.getInstance();
             ClientService service = factory.getClientService();
@@ -19,9 +19,9 @@ public class SignOut implements Command {
             service.signOut(login);
             response = "Good buy";
         } catch (IndexOutOfBoundsException e) {
-            response = "Error during login procedure";
+            response = "Error during logout procedure";
         } catch (ServiceException e) {
-            response = "Error during login procedure. " + e.getMessage();
+            response = "Error during logout procedure. " + e.getMessage().substring(e.getMessage().indexOf(paramDelimiter) + 1);
         }
         return response;
     }

@@ -20,7 +20,10 @@ public final class Controller {
     public String executeCommand(String request) {
         Command executionCommand;
 
-        String commandName = request.substring(0, request.indexOf(paramDelimiter));
+        String commandName = "";
+        if (request.indexOf(paramDelimiter) != -1) {
+            commandName = request.substring(0, request.indexOf(paramDelimiter));
+        }
         executionCommand = provider.getCommand(commandName);
 
         return executionCommand.execute(request);
