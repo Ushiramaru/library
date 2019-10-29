@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
 @XmlType(name = "edition")
-public abstract class Edition {
+public abstract class Edition implements Comparable<Edition> {
 
     private long id;
     private String title;
@@ -57,6 +57,18 @@ public abstract class Edition {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Edition o) {
+        int i = 0;
+        while (title.length() > i && o.title.length() > i) {
+            if (title.charAt(i) < o.title.charAt(i)) return 1;
+            if (title.charAt(i) > o.title.charAt(i)) return -1;
+            i++;
+        }
+
+        return Integer.compare(o.title.length(), title.length());
     }
 
 }

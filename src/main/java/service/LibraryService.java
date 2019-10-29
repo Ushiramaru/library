@@ -11,4 +11,8 @@ public interface LibraryService {
 
     void deleteEdition(long id) throws ServiceException;
 
+    String showEdition() throws ServiceException;
+
+    String sortEdition(String comparatorName) throws ServiceException;
+
 }

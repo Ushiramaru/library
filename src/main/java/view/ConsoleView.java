@@ -19,10 +19,11 @@ public class ConsoleView {
             if (scanner.hasNextLine()) {
                 command = scanner.nextLine();
             }
-            System.out.println(controller.executeCommand(command));
             if (command.equals(EXIT_COMMAND)) {
                 isWork = false;
                 System.out.println("Good buy");
+            } else {
+                System.out.println(controller.executeCommand(command));
             }
         }
     }

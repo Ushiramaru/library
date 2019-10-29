@@ -18,6 +18,8 @@ final class CommandProvider {
         repository.put(CommandName.ADD_NEW_PRINT_EDITION, new AddNewPrintEdition());
         repository.put(CommandName.EDITED_PRINT_EDITION, new EditedPrintEdition());
         repository.put(CommandName.DELETE_EDITION, new DeleteEdition());
+        repository.put(CommandName.SHOW_PRINT_EDITIONS, new ShowPrintEditions());
+        repository.put(CommandName.SORT_EDITIONS, new SortEditions());
         repository.put(CommandName.WRONG_REQUEST, new WrongRequest());
     }
 

@@ -10,13 +10,10 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
-import java.net.URISyntaxException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class XMLEditionDAO implements EditionDAO {
 
-    private final static String FILE_PATH = "/editions.xml";
     private String FULL_FILE_PATH;
     private Unmarshaller unmarshaller;
     private Marshaller marshaller;
@@ -25,14 +22,14 @@ public class XMLEditionDAO implements EditionDAO {
 
     public XMLEditionDAO() {
         try {
-            FULL_FILE_PATH = String.valueOf(Paths.get(XMLUserDAO.class.getResource(FILE_PATH).toURI()).toAbsolutePath());
+            FULL_FILE_PATH = "D:\\library\\out\\artifacts\\library_jar\\editions.xml";
             JAXBContext jaxbContext = JAXBContext.newInstance(EditionsList.class, Edition.class, PrintEdition.class,
                     Book.class, Encyclopedia.class, Newspaper.class);
             unmarshaller = jaxbContext.createUnmarshaller();
             marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             read();
-        } catch (URISyntaxException | JAXBException e) {
+        } catch (JAXBException e) {
             e.printStackTrace();
         }
     }
@@ -81,6 +78,11 @@ public class XMLEditionDAO implements EditionDAO {
     public void deleteEdition(long id) {
         editions.deleteEdition(id);
         write();
+    }
+
+    @Override
+    public ArrayList<Edition> showEdition() throws DAOException {
+        return editions.getEditions();
     }
 
 }

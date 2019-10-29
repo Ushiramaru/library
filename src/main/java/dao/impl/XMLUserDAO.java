@@ -10,13 +10,10 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
-import java.net.URISyntaxException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class XMLUserDAO implements UserDAO {
 
-    private final static String FILE_PATH = "/users.xml";
     private String FULL_FILE_PATH;
     private Unmarshaller unmarshaller;
     private Marshaller marshaller;
@@ -25,13 +22,13 @@ public class XMLUserDAO implements UserDAO {
 
     public XMLUserDAO() {
         try {
-            FULL_FILE_PATH = String.valueOf(Paths.get(XMLUserDAO.class.getResource(FILE_PATH).toURI()).toAbsolutePath());
+            FULL_FILE_PATH = "D:\\library\\out\\artifacts\\library_jar\\users.xml";
             JAXBContext jaxbContext = JAXBContext.newInstance(UsersList.class, User.class);
             unmarshaller = jaxbContext.createUnmarshaller();
             marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             read();
-        } catch (URISyntaxException | JAXBException e) {
+        } catch (JAXBException e) {
             e.printStackTrace();
         }
     }
