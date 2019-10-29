@@ -48,7 +48,7 @@ public class Book extends PrintEdition {
     public String toString() {
         return "Book{" +
                 "genre=" + genre +
-                '}';
+                "} " + super.toString();
     }
 
 }
