@@ -61,14 +61,7 @@ public abstract class Edition implements Comparable<Edition> {
 
     @Override
     public int compareTo(Edition o) {
-        int i = 0;
-        while (title.length() > i && o.title.length() > i) {
-            if (title.charAt(i) < o.title.charAt(i)) return 1;
-            if (title.charAt(i) > o.title.charAt(i)) return -1;
-            i++;
-        }
-
-        return Integer.compare(o.title.length(), title.length());
+        return title.compareTo(o.title);
     }
 
 }
