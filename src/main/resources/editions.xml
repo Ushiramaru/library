@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<editions>
+    <edition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="book" id="1">
+        <title>Some_1</title>
+        <listCount>101</listCount>
+        <listFormat>A1</listFormat>
+        <publicationYear>1991</publicationYear>
+        <genre>FANTASY</genre>
+    </edition>
+    <edition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="book" id="2">
+        <title>Some_2</title>
+        <listCount>102</listCount>
+        <listFormat>A2</listFormat>
+        <publicationYear>1992</publicationYear>
+        <genre>DETECTIVE</genre>
+    </edition>
+    <edition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="book" id="3">
+        <title>Some_3</title>
+        <listCount>103</listCount>
+        <listFormat>A3</listFormat>
+        <publicationYear>1993</publicationYear>
+        <genre>FANTASY</genre>
+    </edition>
+</editions>
