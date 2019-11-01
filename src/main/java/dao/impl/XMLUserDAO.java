@@ -10,7 +10,6 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
-import java.util.ArrayList;
 
 public class XMLUserDAO implements UserDAO {
 
@@ -23,7 +22,7 @@ public class XMLUserDAO implements UserDAO {
     public XMLUserDAO() {
         try {
             FULL_FILE_PATH = "D:\\library\\out\\artifacts\\library_jar\\users.xml";
-            JAXBContext jaxbContext = JAXBContext.newInstance(UsersList.class, User.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(UsersList.class);
             unmarshaller = jaxbContext.createUnmarshaller();
             marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -38,11 +37,10 @@ public class XMLUserDAO implements UserDAO {
             users = (UsersList) unmarshaller.unmarshal(new File(FULL_FILE_PATH));
         } catch (JAXBException e) {
             users = new UsersList();
-            users.setUsers(new ArrayList<>());
         }
     }
 
-    private void write()  {
+    private void write() {
         try {
             marshaller.marshal(users, new File(FULL_FILE_PATH));
         } catch (JAXBException ignored) {
@@ -67,7 +65,7 @@ public class XMLUserDAO implements UserDAO {
                 throw new DAOException("This login already exist");
             }
         }
-        users.addUser(user);
+        users.add(user);
         write();
     }
 

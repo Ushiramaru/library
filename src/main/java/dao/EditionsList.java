@@ -1,36 +1,20 @@
 package dao;
 
-import bean.Edition;
+import bean.*;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import java.util.ArrayList;
 import java.util.Comparator;
 
 @XmlRootElement(name = "editions")
-public final class EditionsList {
-
-    private ArrayList<Edition> editions = new ArrayList<>();
-
-    public ArrayList<Edition> getEditions() {
-        return editions;
-    }
+@XmlSeeAlso({Edition.class, PrintEdition.class, Book.class, Encyclopedia.class, Newspaper.class})
+public final class EditionsList extends ArrayList<Edition>{
 
     @XmlElement(name = "edition")
-    public void setEditions(ArrayList<Edition> editions) {
-        this.editions = editions;
-    }
-
-    public boolean addEdition(Edition edition) {
-        return editions.add(edition);
-    }
-
-    public void deleteEdition(long id) {
-        editions.removeIf(edition -> edition.getId() == id);
-    }
-
-    public void sort(Comparator<Edition> comparator) {
-        editions.sort(comparator);
+    public ArrayList<Edition> getEditions() {
+        return this;
     }
 
 }
