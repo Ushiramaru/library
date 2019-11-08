@@ -1,5 +1,6 @@
 package bean;
 
+import bean.enums.EditionType;
 import bean.enums.EncyclopediaType;
 import bean.enums.ListFormat;
 
@@ -16,8 +17,8 @@ public class Encyclopedia extends PrintEdition {
 
     }
 
-    public Encyclopedia(long id, String title, ListFormat listFormat, int listCount, int publicationDate, EncyclopediaType encyclopediaType) {
-        super(id, title, listFormat, listCount, publicationDate);
+    public Encyclopedia(EditionType editionType, long id, String title, ListFormat listFormat, int listCount, int publicationYear, EncyclopediaType encyclopediaType) {
+        super(editionType, id, title, listFormat, listCount, publicationYear);
         this.encyclopediaType = encyclopediaType;
     }
 

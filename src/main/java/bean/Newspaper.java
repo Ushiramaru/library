@@ -1,5 +1,6 @@
 package bean;
 
+import bean.enums.EditionType;
 import bean.enums.ListFormat;
 import bean.enums.NewspaperType;
 
@@ -16,8 +17,8 @@ public class Newspaper extends PrintEdition {
 
     }
 
-    public Newspaper(long id, String title, ListFormat listFormat, int listCount, int publicationDate, NewspaperType newspaperType) {
-        super(id, title, listFormat, listCount, publicationDate);
+    public Newspaper(EditionType editionType, long id, String title, ListFormat listFormat, int listCount, int publicationYear, NewspaperType newspaperType) {
+        super(editionType, id, title, listFormat, listCount, publicationYear);
         this.newspaperType = newspaperType;
     }
 

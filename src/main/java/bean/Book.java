@@ -1,5 +1,6 @@
 package bean;
 
+import bean.enums.EditionType;
 import bean.enums.Genre;
 import bean.enums.ListFormat;
 
@@ -16,8 +17,8 @@ public class Book extends PrintEdition {
 
     }
 
-    public Book(long id, String title, ListFormat listFormat, int listCount, int publicationDate, Genre genre) {
-        super(id, title, listFormat, listCount, publicationDate);
+    public Book(EditionType editionType, long id, String title, ListFormat listFormat, int listCount, int publicationYear, Genre genre) {
+        super(editionType, id, title, listFormat, listCount, publicationYear);
         this.genre = genre;
     }
 

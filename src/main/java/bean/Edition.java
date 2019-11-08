@@ -1,5 +1,7 @@
 package bean;
 
+import bean.enums.EditionType;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
@@ -10,13 +12,23 @@ public abstract class Edition implements Comparable<Edition> {
 
     private long id;
     private String title;
+    private EditionType editionType;
 
     public Edition() {
     }
 
-    public Edition(long id, String title) {
+    public Edition(EditionType editionType, long id, String title) {
+        this.editionType = editionType;
         this.id = id;
         this.title = title;
+    }
+
+    public EditionType getEditionType() {
+        return editionType;
+    }
+
+    public void setEditionType(EditionType editionType) {
+        this.editionType = editionType;
     }
 
     public long getId() {
@@ -43,12 +55,13 @@ public abstract class Edition implements Comparable<Edition> {
         if (o == null || getClass() != o.getClass()) return false;
         Edition edition = (Edition) o;
         return id == edition.id &&
-                title.equals(edition.title);
+                title.equals(edition.title) &&
+                editionType == edition.editionType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title);
+        return Objects.hash(id, title, editionType);
     }
 
     @Override
@@ -56,6 +69,7 @@ public abstract class Edition implements Comparable<Edition> {
         return "Edition{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
+                ", editionType=" + editionType +
                 '}';
     }
 

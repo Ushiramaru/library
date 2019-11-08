@@ -1,5 +1,6 @@
 package bean;
 
+import bean.enums.EditionType;
 import bean.enums.ListFormat;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -7,7 +8,7 @@ import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
 @XmlType(name = "printEdition")
-public abstract class PrintEdition extends Edition {
+public class PrintEdition extends Edition {
 
     private ListFormat listFormat;
     private int listCount;
@@ -17,11 +18,11 @@ public abstract class PrintEdition extends Edition {
 
     }
 
-    public PrintEdition(long id, String title, ListFormat listFormat, int listCount, int publicationDate) {
-        super(id, title);
+    public PrintEdition(EditionType editionType, long id, String title, ListFormat listFormat, int listCount, int publicationYear) {
+        super(editionType, id, title);
         this.listFormat = listFormat;
         this.listCount = listCount;
-        this.publicationYear = publicationDate;
+        this.publicationYear = publicationYear;
     }
 
     public ListFormat getListFormat() {
