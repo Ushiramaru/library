@@ -2,6 +2,6 @@ package bean.enums;
 
 public enum EditionType {
 
-    BOOK, ENCYCLOPEDIA, NEWSPAPER
+    PRINT_EDITION, BOOK, ENCYCLOPEDIA, NEWSPAPER
 
 }
