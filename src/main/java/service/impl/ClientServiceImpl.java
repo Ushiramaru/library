@@ -28,7 +28,7 @@ public class ClientServiceImpl implements ClientService {
             throw new PasswordException("Incorrect password");
         }
         DAOFactory factory = DAOFactory.getInstance();
-        UserDAO dao = factory.getXmlUserImpl();
+        UserDAO dao = factory.getXmlUserDAO();
 
         try {
             for (User user : loginUsers) {
@@ -75,7 +75,7 @@ public class ClientServiceImpl implements ClientService {
             throw new ServiceException("Incorrect age. You must be at least " + VALID_MIN_AGE + " years old");
         }
         DAOFactory factory = DAOFactory.getInstance();
-        UserDAO dao = factory.getXmlUserImpl();
+        UserDAO dao = factory.getXmlUserDAO();
 
         try {
             dao.registration(user);

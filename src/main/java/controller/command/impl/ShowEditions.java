@@ -5,7 +5,7 @@ import service.LibraryService;
 import service.exeption.ServiceException;
 import service.factory.ServiceFactory;
 
-public class ShowPrintEditions implements Command {
+public class ShowEditions implements Command {
     @Override
     public String execute(String request) {
         String response;

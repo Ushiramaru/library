@@ -24,6 +24,7 @@ public class SignIn implements Command {
         } catch (ServiceException e) {
             response = "Error during login procedure. " + e.getMessage().substring(e.getMessage().indexOf(paramDelimiter) + 1);
         }
+
         return response;
     }
 

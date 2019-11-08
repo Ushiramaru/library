@@ -15,10 +15,10 @@ final class CommandProvider {
         repository.put(CommandName.SIGN_IN, new SignIn());
         repository.put(CommandName.SIGN_OUT, new SignOut());
         repository.put(CommandName.REGISTRATION, new Registration());
-        repository.put(CommandName.ADD_NEW_PRINT_EDITION, new AddNewPrintEdition());
-        repository.put(CommandName.EDITED_PRINT_EDITION, new EditedPrintEdition());
+        repository.put(CommandName.ADD_NEW_EDITION, new AddNewEdition());
+        repository.put(CommandName.EDITED_EDITION, new EditedEdition());
         repository.put(CommandName.DELETE_EDITION, new DeleteEdition());
-        repository.put(CommandName.SHOW_PRINT_EDITIONS, new ShowPrintEditions());
+        repository.put(CommandName.SHOW_EDITIONS, new ShowEditions());
         repository.put(CommandName.SORT_EDITIONS, new SortEditions());
         repository.put(CommandName.WRONG_REQUEST, new WrongRequest());
     }
@@ -32,6 +32,7 @@ final class CommandProvider {
         } catch (IllegalArgumentException | NullPointerException e) {
             command = repository.get(CommandName.WRONG_REQUEST);
         }
+
         return command;
     }
 

@@ -22,6 +22,7 @@ public class SortEditions implements Command {
         } catch (ServiceException e) {
             response = "Error during sorted procedure. " + e.getMessage().substring(e.getMessage().indexOf(paramDelimiter) + 1);
         }
+
         return response;
     }
 

@@ -33,6 +33,7 @@ public class Registration implements Command {
         } catch (ServiceException e) {
             response = "Error during registration procedure. " + e.getMessage().substring(e.getMessage().indexOf(paramDelimiter) + 1);
         }
+
         return response;
     }
 

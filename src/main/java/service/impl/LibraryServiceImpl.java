@@ -19,7 +19,7 @@ public class LibraryServiceImpl implements LibraryService {
         }
 
         DAOFactory factory = DAOFactory.getInstance();
-        EditionDAO dao = factory.getXmlEditionDAO();
+        EditionDAO dao = factory.getXmlPrintEditionDAO();
 
         try {
             dao.addEdition(edition);
@@ -35,7 +35,7 @@ public class LibraryServiceImpl implements LibraryService {
         }
 
         DAOFactory factory = DAOFactory.getInstance();
-        EditionDAO dao = factory.getXmlEditionDAO();
+        EditionDAO dao = factory.getXmlPrintEditionDAO();
 
         try {
             dao.editedEdition(id, edition);
@@ -48,7 +48,7 @@ public class LibraryServiceImpl implements LibraryService {
     @Override
     public void deleteEdition(long id) throws ServiceException {
         DAOFactory factory = DAOFactory.getInstance();
-        EditionDAO dao = factory.getXmlEditionDAO();
+        EditionDAO dao = factory.getXmlPrintEditionDAO();
 
         try {
             dao.deleteEdition(id);
@@ -60,7 +60,7 @@ public class LibraryServiceImpl implements LibraryService {
     @Override
     public String showEdition() throws ServiceException {
         DAOFactory factory = DAOFactory.getInstance();
-        EditionDAO dao = factory.getXmlEditionDAO();
+        EditionDAO dao = factory.getXmlPrintEditionDAO();
 
         String response = "";
         try {
@@ -81,7 +81,7 @@ public class LibraryServiceImpl implements LibraryService {
     @Override
     public String sortEdition(String comparatorName) throws ServiceException {
         DAOFactory factory = DAOFactory.getInstance();
-        EditionDAO dao = factory.getXmlEditionDAO();
+        EditionDAO dao = factory.getXmlPrintEditionDAO();
 
         String response = "";
         try {

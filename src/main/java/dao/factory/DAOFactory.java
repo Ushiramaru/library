@@ -2,14 +2,13 @@ package dao.factory;
 
 import dao.EditionDAO;
 import dao.UserDAO;
-import dao.impl.XMLEditionDAO;
-import dao.impl.XMLUserDAO;
+import dao.impl.*;
 
 public final class DAOFactory {
 
     private static final DAOFactory instance = new DAOFactory();
-    private final EditionDAO xmlEditionDAO = new XMLEditionDAO();
-    private final UserDAO xmlUserImpl = new XMLUserDAO();
+    private final EditionDAO xmlPrintEditionDAO = new XMLEditionDAO();
+    private final UserDAO xmlUserDAO = new XMLUserDAO();
 
     private DAOFactory() {
 
@@ -19,12 +18,12 @@ public final class DAOFactory {
         return instance;
     }
 
-    public EditionDAO getXmlEditionDAO() {
-        return xmlEditionDAO;
+    public EditionDAO getXmlPrintEditionDAO() {
+        return xmlPrintEditionDAO;
     }
 
-    public UserDAO getXmlUserImpl() {
-        return xmlUserImpl;
+    public UserDAO getXmlUserDAO() {
+        return xmlUserDAO;
     }
 
 }
