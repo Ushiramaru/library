@@ -1,7 +1,21 @@
 package bean.enums;
 
+/**
+ * The enum Newspaper type.
+ */
 public enum NewspaperType {
 
-    NEWS, PROMOTIONAL, YELLOW
+    /**
+     * News newspaper type.
+     */
+    NEWS,
+    /**
+     * Promotional newspaper type.
+     */
+    PROMOTIONAL,
+    /**
+     * Yellow newspaper type.
+     */
+    YELLOW
 
 }

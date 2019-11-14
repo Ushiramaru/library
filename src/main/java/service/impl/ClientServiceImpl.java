@@ -11,6 +11,9 @@ import service.exeption.ServiceException;
 
 import java.util.ArrayList;
 
+/**
+ * The type Client service.
+ */
 public class ClientServiceImpl implements ClientService {
 
     private static final int VALID_LOGIN_LENGTH = 3;

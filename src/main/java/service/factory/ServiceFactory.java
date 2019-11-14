@@ -5,6 +5,9 @@ import service.LibraryService;
 import service.impl.ClientServiceImpl;
 import service.impl.LibraryServiceImpl;
 
+/**
+ * The type Service factory.
+ */
 public final class ServiceFactory {
 
     private static final ServiceFactory instance = new ServiceFactory();
@@ -16,14 +19,29 @@ public final class ServiceFactory {
 
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static ServiceFactory getInstance() {
         return instance;
     }
 
+    /**
+     * Gets client service.
+     *
+     * @return the client service
+     */
     public ClientService getClientService() {
         return clientService;
     }
 
+    /**
+     * Gets library service.
+     *
+     * @return the library service
+     */
     public LibraryService getLibraryService() {
         return libraryService;
     }

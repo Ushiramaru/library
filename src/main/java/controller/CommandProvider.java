@@ -7,10 +7,16 @@ import controller.command.impl.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The type Command provider.
+ */
 final class CommandProvider {
 
     private final Map<CommandName, Command> repository = new HashMap<>();
 
+    /**
+     * Instantiates a new Command provider.
+     */
     CommandProvider() {
         repository.put(CommandName.SIGN_IN, new SignIn());
         repository.put(CommandName.SIGN_OUT, new SignOut());
@@ -23,6 +29,12 @@ final class CommandProvider {
         repository.put(CommandName.WRONG_REQUEST, new WrongRequest());
     }
 
+    /**
+     * Gets command.
+     *
+     * @param name the name
+     * @return the command
+     */
     Command getCommand(String name) {
         CommandName commandName;
         Command command;

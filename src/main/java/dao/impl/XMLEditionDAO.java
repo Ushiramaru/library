@@ -12,6 +12,9 @@ import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.util.ArrayList;
 
+/**
+ * The type Xml edition dao.
+ */
 public class XMLEditionDAO implements EditionDAO {
 
     private String FULL_FILE_PATH;
@@ -20,6 +23,9 @@ public class XMLEditionDAO implements EditionDAO {
 
     private EditionsList editions;
 
+    /**
+     * Instantiates a new Xml edition dao.
+     */
     public XMLEditionDAO() {
         try {
             FULL_FILE_PATH = "D:\\library\\out\\artifacts\\library_jar\\editions.xml";

@@ -5,7 +5,11 @@ import service.LibraryService;
 import service.exeption.ServiceException;
 import service.factory.ServiceFactory;
 
+/**
+ * The type Show editions.
+ */
 public class ShowEditions implements Command {
+
     @Override
     public String execute(String request) {
         String response;
@@ -21,4 +25,5 @@ public class ShowEditions implements Command {
 
         return response;
     }
+
 }

@@ -11,6 +11,9 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 
+/**
+ * The type Xml user dao.
+ */
 public class XMLUserDAO implements UserDAO {
 
     private String FULL_FILE_PATH;
@@ -19,6 +22,9 @@ public class XMLUserDAO implements UserDAO {
 
     private UsersList users;
 
+    /**
+     * Instantiates a new Xml user dao.
+     */
     public XMLUserDAO() {
         try {
             FULL_FILE_PATH = "D:\\library\\out\\artifacts\\library_jar\\users.xml";

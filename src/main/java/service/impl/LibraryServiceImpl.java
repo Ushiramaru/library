@@ -10,6 +10,9 @@ import service.exeption.ServiceException;
 
 import java.util.ArrayList;
 
+/**
+ * The type Library service.
+ */
 public class LibraryServiceImpl implements LibraryService {
 
     @Override

@@ -8,24 +8,51 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
+/**
+ * The type Book.
+ */
 @XmlType(name = "book")
 public class Book extends PrintEdition {
 
     private Genre genre;
 
+    /**
+     * Instantiates a new Book.
+     */
     public Book() {
 
     }
 
+    /**
+     * Instantiates a new Book.
+     *
+     * @param editionType     the edition type
+     * @param id              the id
+     * @param title           the title
+     * @param listFormat      the list format
+     * @param listCount       the list count
+     * @param publicationYear the publication year
+     * @param genre           the genre
+     */
     public Book(EditionType editionType, long id, String title, ListFormat listFormat, int listCount, int publicationYear, Genre genre) {
         super(editionType, id, title, listFormat, listCount, publicationYear);
         this.genre = genre;
     }
 
+    /**
+     * Gets genre.
+     *
+     * @return the genre
+     */
     public Genre getGenre() {
         return genre;
     }
 
+    /**
+     * Sets genre.
+     *
+     * @param genre the genre
+     */
     @XmlElement(name = "genre")
     public void setGenre(Genre genre) {
         this.genre = genre;

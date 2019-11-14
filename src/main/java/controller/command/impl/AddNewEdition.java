@@ -7,6 +7,9 @@ import service.LibraryService;
 import service.factory.ServiceFactory;
 import service.exeption.ServiceException;
 
+/**
+ * The type Add new edition.
+ */
 public class AddNewEdition implements Command {
 
     @Override

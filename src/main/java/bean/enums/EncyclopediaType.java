@@ -1,7 +1,17 @@
 package bean.enums;
 
+/**
+ * The enum Encyclopedia type.
+ */
 public enum EncyclopediaType {
 
-    NATURE, TECHNOLOGY
+    /**
+     * Nature encyclopedia type.
+     */
+    NATURE,
+    /**
+     * Technology encyclopedia type.
+     */
+    TECHNOLOGY
 
 }

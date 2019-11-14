@@ -5,6 +5,9 @@ import service.ClientService;
 import service.exeption.ServiceException;
 import service.factory.ServiceFactory;
 
+/**
+ * The type Sign out.
+ */
 public class SignOut implements Command {
 
     @Override

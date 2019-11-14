@@ -6,6 +6,9 @@ import service.ClientService;
 import service.exeption.ServiceException;
 import service.factory.ServiceFactory;
 
+/**
+ * The type Registration.
+ */
 public class Registration implements Command {
 
     @Override

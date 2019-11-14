@@ -5,6 +5,9 @@ import service.LibraryService;
 import service.exeption.ServiceException;
 import service.factory.ServiceFactory;
 
+/**
+ * The type Delete edition.
+ */
 public class DeleteEdition implements Command {
 
     @Override

@@ -2,6 +2,9 @@ package controller.command.impl;
 
 import controller.command.Command;
 
+/**
+ * The type Wrong request.
+ */
 public class WrongRequest implements Command {
 
     @Override

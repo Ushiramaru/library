@@ -6,6 +6,9 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The type Edition comparator provider.
+ */
 public final class EditionComparatorProvider {
 
     private static final EditionComparatorProvider instance = new EditionComparatorProvider();
@@ -15,6 +18,11 @@ public final class EditionComparatorProvider {
 
     private final Map<EditionComparatorName, Comparator<Edition>> repository = new HashMap<>();
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static EditionComparatorProvider getInstance() {
         return instance;
     }
@@ -24,6 +32,12 @@ public final class EditionComparatorProvider {
         repository.put(EditionComparatorName.SORT_EDITION_BY_TITLE_LENGTH, SORT_EDITION_BY_TITLE_LENGTH);
     }
 
+    /**
+     * Gets comparator.
+     *
+     * @param name the name
+     * @return the comparator
+     */
     public Comparator<Edition> getComparator(String name) {
         EditionComparatorName comparatorName;
         Comparator<Edition> comparator;

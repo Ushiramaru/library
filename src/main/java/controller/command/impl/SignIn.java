@@ -5,6 +5,9 @@ import service.ClientService;
 import service.exeption.ServiceException;
 import service.factory.ServiceFactory;
 
+/**
+ * The type Sign in.
+ */
 public class SignIn implements Command {
 
     @Override

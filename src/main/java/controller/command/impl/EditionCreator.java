@@ -4,8 +4,17 @@ import bean.*;
 import bean.enums.*;
 import controller.command.Command;
 
+/**
+ * The type Edition creator.
+ */
 class EditionCreator {
 
+    /**
+     * Value of edition.
+     *
+     * @param s the s
+     * @return the edition
+     */
     static Edition valueOf(String s) {
         int indexStart = s.indexOf(Command.paramDelimiter) + 1;
         int indexEnd = s.indexOf(Command.paramDelimiter, indexStart);

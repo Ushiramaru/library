@@ -8,24 +8,51 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
+/**
+ * The type Encyclopedia.
+ */
 @XmlType(name = "encyclopedia")
 public class Encyclopedia extends PrintEdition {
 
     private EncyclopediaType encyclopediaType;
 
+    /**
+     * Instantiates a new Encyclopedia.
+     */
     public Encyclopedia() {
 
     }
 
+    /**
+     * Instantiates a new Encyclopedia.
+     *
+     * @param editionType      the edition type
+     * @param id               the id
+     * @param title            the title
+     * @param listFormat       the list format
+     * @param listCount        the list count
+     * @param publicationYear  the publication year
+     * @param encyclopediaType the encyclopedia type
+     */
     public Encyclopedia(EditionType editionType, long id, String title, ListFormat listFormat, int listCount, int publicationYear, EncyclopediaType encyclopediaType) {
         super(editionType, id, title, listFormat, listCount, publicationYear);
         this.encyclopediaType = encyclopediaType;
     }
 
+    /**
+     * Gets encyclopedia type.
+     *
+     * @return the encyclopedia type
+     */
     public EncyclopediaType getEncyclopediaType() {
         return encyclopediaType;
     }
 
+    /**
+     * Sets encyclopedia type.
+     *
+     * @param encyclopediaType the encyclopedia type
+     */
     @XmlElement(name = "encyclopediaType")
     public void setEncyclopediaType(EncyclopediaType encyclopediaType) {
         this.encyclopediaType = encyclopediaType;

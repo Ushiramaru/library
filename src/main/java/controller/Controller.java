@@ -2,6 +2,9 @@ package controller;
 
 import controller.command.Command;
 
+/**
+ * The type Controller.
+ */
 public final class Controller {
 
     private static final Controller instance = new Controller();
@@ -13,10 +16,21 @@ public final class Controller {
 
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static Controller getInstance() {
         return instance;
     }
 
+    /**
+     * Execute command string.
+     *
+     * @param request the request
+     * @return the string
+     */
     public String executeCommand(String request) {
         Command executionCommand;
 

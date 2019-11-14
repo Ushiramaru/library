@@ -6,6 +6,9 @@ import service.LibraryService;
 import service.factory.ServiceFactory;
 import service.exeption.ServiceException;
 
+/**
+ * The type Edited edition.
+ */
 public class EditedEdition implements Command {
 
     @Override

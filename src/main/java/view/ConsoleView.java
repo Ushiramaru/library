@@ -4,10 +4,18 @@ import controller.Controller;
 
 import java.util.Scanner;
 
+/**
+ * The type Console view.
+ */
 public class ConsoleView {
 
     private static final String EXIT_COMMAND = "exit";
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
 
         Controller controller = Controller.getInstance();
