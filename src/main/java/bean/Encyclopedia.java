@@ -20,7 +20,7 @@ public class Encyclopedia extends PrintEdition {
      * Instantiates a new Encyclopedia.
      */
     public Encyclopedia() {
-
+        setEditionType(EditionType.ENCYCLOPEDIA);
     }
 
     /**

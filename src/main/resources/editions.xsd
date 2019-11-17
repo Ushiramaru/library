@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="editions" type="editionsList"/>
+
+    <xs:complexType name="editionsList" final="extension restriction">
+        <xs:complexContent>
+            <xs:extension base="arrayList">
+                <xs:sequence>
+                    <xs:element name="edition" type="edition" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="arrayList">
+        <xs:complexContent>
+            <xs:extension base="abstractList">
+                <xs:sequence/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="abstractList" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="abstractCollection">
+                <xs:sequence/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="abstractCollection" abstract="true">
+        <xs:sequence/>
+    </xs:complexType>
+
+    <xs:complexType name="edition" abstract="true">
+        <xs:sequence>
+            <xs:element name="title">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:long" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="printEdition">
+        <xs:complexContent>
+            <xs:extension base="edition">
+                <xs:sequence>
+                    <xs:element name="listCount">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:int">
+                                <xs:minInclusive value="1"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="listFormat" type="listFormat"/>
+                    <xs:element name="publicationYear">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:int">
+                                <xs:minInclusive value="0"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="book">
+        <xs:complexContent>
+            <xs:extension base="printEdition">
+                <xs:sequence>
+                    <xs:element name="genre" type="genre"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="encyclopedia">
+        <xs:complexContent>
+            <xs:extension base="printEdition">
+                <xs:sequence>
+                    <xs:element name="encyclopediaType" type="encyclopediaType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="newspaper">
+        <xs:complexContent>
+            <xs:extension base="printEdition">
+                <xs:sequence>
+                    <xs:element name="newspaperType" type="newspaperType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="listFormat">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="A1"/>
+            <xs:enumeration value="A2"/>
+            <xs:enumeration value="A3"/>
+            <xs:enumeration value="A4"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="genre">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="FANTASY"/>
+            <xs:enumeration value="MYSTIC"/>
+            <xs:enumeration value="DETECTIVE"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="encyclopediaType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NATURE"/>
+            <xs:enumeration value="TECHNOLOGY"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="newspaperType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NEWS"/>
+            <xs:enumeration value="PROMOTIONAL"/>
+            <xs:enumeration value="YELLOW"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
+

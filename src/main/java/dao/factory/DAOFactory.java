@@ -2,6 +2,7 @@ package dao.factory;
 
 import dao.EditionDAO;
 import dao.UserDAO;
+import dao.XMLValidatorByXSD;
 import dao.impl.*;
 
 /**
@@ -10,8 +11,12 @@ import dao.impl.*;
 public final class DAOFactory {
 
     private static final DAOFactory instance = new DAOFactory();
-    private final EditionDAO xmlPrintEditionDAO = new XMLEditionDAO();
-    private final UserDAO xmlUserDAO = new XMLUserDAO();
+    private final EditionDAO xmlPrintEditionDAO = new XMLEditionDAO(
+            new XMLValidatorByXSD("D:\\library\\src\\main\\resources\\editions.xsd"),
+            "D:\\library\\src\\main\\resources\\editions.xml");
+    private final UserDAO xmlUserDAO = new XMLUserDAO(
+            new XMLValidatorByXSD("D:\\library\\src\\main\\resources\\users.xsd"),
+            "D:\\library\\src\\main\\resources\\users.xml");
 
     private DAOFactory() {
 

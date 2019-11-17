@@ -20,7 +20,7 @@ public class Book extends PrintEdition {
      * Instantiates a new Book.
      */
     public Book() {
-
+        setEditionType(EditionType.BOOK);
     }
 
     /**

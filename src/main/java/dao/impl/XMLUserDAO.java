@@ -3,6 +3,7 @@ package dao.impl;
 import bean.User;
 import dao.UserDAO;
 import dao.UsersList;
+import dao.XMLValidator;
 import dao.exception.DAOException;
 
 import javax.xml.bind.JAXBContext;
@@ -16,39 +17,45 @@ import java.io.File;
  */
 public class XMLUserDAO implements UserDAO {
 
-    private String FULL_FILE_PATH;
+    private String xmlFileName;
     private Unmarshaller unmarshaller;
     private Marshaller marshaller;
+    private XMLValidator xmlValidator;
 
-    private UsersList users;
 
     /**
      * Instantiates a new Xml user dao.
+     *
+     * @param xmlValidator the xml validator
+     * @param xmlFileName  the xml file name
      */
-    public XMLUserDAO() {
+    public XMLUserDAO(XMLValidator xmlValidator, String xmlFileName) {
+        this.xmlValidator = xmlValidator;
+        this.xmlFileName = xmlFileName;
         try {
-            FULL_FILE_PATH = "D:\\library\\out\\artifacts\\library_jar\\users.xml";
             JAXBContext jaxbContext = JAXBContext.newInstance(UsersList.class);
             unmarshaller = jaxbContext.createUnmarshaller();
             marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            read();
         } catch (JAXBException e) {
             e.printStackTrace();
         }
     }
 
-    private void read() {
-        try {
-            users = (UsersList) unmarshaller.unmarshal(new File(FULL_FILE_PATH));
-        } catch (JAXBException e) {
-            users = new UsersList();
+    private UsersList read() throws DAOException {
+        if (xmlValidator.isValid(xmlFileName)) {
+            try {
+                return (UsersList) unmarshaller.unmarshal(new File(xmlFileName));
+            } catch (JAXBException e) {
+                throw new DAOException("Invalid xml");
+            }
         }
+        throw new DAOException("Invalid xml");
     }
 
-    private void write() {
+    private void write(UsersList users) {
         try {
-            marshaller.marshal(users, new File(FULL_FILE_PATH));
+            marshaller.marshal(users, new File(xmlFileName));
         } catch (JAXBException ignored) {
 
         }
@@ -56,6 +63,7 @@ public class XMLUserDAO implements UserDAO {
 
     @Override
     public User signIn(String login, String password) throws DAOException {
+        UsersList users = read();
         for (User user : users.getUsers()) {
             if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
                 return user;
@@ -66,13 +74,14 @@ public class XMLUserDAO implements UserDAO {
 
     @Override
     public void registration(User user) throws DAOException {
+        UsersList users = read();
         for (User u : users.getUsers()) {
             if (u.getLogin().equals(user.getLogin())) {
                 throw new DAOException("This login already exist");
             }
         }
         users.add(user);
-        write();
+        write(users);
     }
 
 }

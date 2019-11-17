@@ -4,6 +4,7 @@ import bean.enums.EditionType;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
@@ -50,6 +51,7 @@ public abstract class Edition implements Comparable<Edition> {
      *
      * @param editionType the edition type
      */
+    @XmlTransient
     public void setEditionType(EditionType editionType) {
         this.editionType = editionType;
     }

@@ -3,6 +3,7 @@ package dao.impl;
 import bean.*;
 import dao.EditionDAO;
 import dao.EditionsList;
+import dao.XMLValidator;
 import dao.exception.DAOException;
 
 import javax.xml.bind.JAXBContext;
@@ -17,39 +18,44 @@ import java.util.ArrayList;
  */
 public class XMLEditionDAO implements EditionDAO {
 
-    private String FULL_FILE_PATH;
+    private String xmlFileName;
     private Unmarshaller unmarshaller;
     private Marshaller marshaller;
-
-    private EditionsList editions;
+    private XMLValidator xmlValidator;
 
     /**
      * Instantiates a new Xml edition dao.
+     *
+     * @param xmlValidator the xml validator
+     * @param xmlFileName  the xml file name
      */
-    public XMLEditionDAO() {
+    public XMLEditionDAO(XMLValidator xmlValidator, String xmlFileName) {
+        this.xmlValidator = xmlValidator;
+        this.xmlFileName = xmlFileName;
         try {
-            FULL_FILE_PATH = "D:\\library\\out\\artifacts\\library_jar\\editions.xml";
             JAXBContext jaxbContext = JAXBContext.newInstance(EditionsList.class);
             unmarshaller = jaxbContext.createUnmarshaller();
             marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            read();
         } catch (JAXBException e) {
             e.printStackTrace();
         }
     }
 
-    private void read() {
-        try {
-            editions = (EditionsList) unmarshaller.unmarshal(new File(FULL_FILE_PATH));
-        } catch (JAXBException e) {
-            editions = new EditionsList();
+    private EditionsList read() throws DAOException {
+        if (xmlValidator.isValid(xmlFileName)) {
+            try {
+                return (EditionsList) unmarshaller.unmarshal(new File(xmlFileName));
+            } catch (JAXBException e) {
+                throw new DAOException("Invalid xml");
+            }
         }
+        throw new DAOException("Invalid xml");
     }
 
-    private void write() {
+    private void write(EditionsList editions) {
         try {
-            marshaller.marshal(editions, new File(FULL_FILE_PATH));
+            marshaller.marshal(editions, new File(xmlFileName));
         } catch (JAXBException ignored) {
 
         }
@@ -57,17 +63,19 @@ public class XMLEditionDAO implements EditionDAO {
 
     @Override
     public void addEdition(Edition edition) throws DAOException {
+        EditionsList editions = read();
         for (Edition edition1 : editions) {
             if (edition.getId() == edition1.getId()) {
                 throw new DAOException("Edition with " + edition.getId() + " id exist");
             }
         }
         editions.add(edition);
-        write();
+        write(editions);
     }
 
     @Override
     public void editedEdition(long id, Edition editedEdition) throws DAOException {
+        EditionsList editions = read();
         for (Edition currEdition : editions) {
             if (editedEdition.getId() == currEdition.getId() && currEdition.getId() != id) {
                 throw new DAOException("Edition with " + editedEdition.getId() + " id exist");
@@ -75,18 +83,19 @@ public class XMLEditionDAO implements EditionDAO {
         }
         editions.removeIf(edition -> edition.getId() == id);
         editions.add(editedEdition);
-        write();
+        write(editions);
     }
 
     @Override
-    public void deleteEdition(long id) {
+    public void deleteEdition(long id) throws DAOException {
+        EditionsList editions = read();
         editions.removeIf(edition -> edition.getId() == id);
-        write();
+        write(editions);
     }
 
     @Override
     public ArrayList<Edition> showEdition() throws DAOException {
-        return editions;
+        return read();
     }
 
 }

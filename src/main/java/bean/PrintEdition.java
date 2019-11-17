@@ -21,7 +21,7 @@ public class PrintEdition extends Edition {
      * Instantiates a new Print edition.
      */
     public PrintEdition() {
-
+        setEditionType(EditionType.PRINT_EDITION);
     }
 
     /**

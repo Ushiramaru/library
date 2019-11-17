@@ -14,8 +14,9 @@ class EditionCreator {
      *
      * @param s the s
      * @return the edition
+     * @throws IllegalArgumentException the illegal argument exception
      */
-    static Edition valueOf(String s) {
+    static Edition valueOf(String s) throws IllegalArgumentException{
         int indexStart = s.indexOf(Command.paramDelimiter) + 1;
         int indexEnd = s.indexOf(Command.paramDelimiter, indexStart);
         EditionType type = EditionType.valueOf(s.substring(indexStart, indexEnd).toUpperCase());
@@ -40,6 +41,9 @@ class EditionCreator {
         indexEnd = s.indexOf(Command.paramDelimiter, indexStart);
         int publicationYear = Integer.valueOf(s.substring(indexStart, indexEnd));
 
+        if (id < 0 || listCount < 1 || publicationYear < 0) {
+            throw new IllegalArgumentException();
+        }
         Edition edition;
         switch (type) {
             case PRINT_EDITION:

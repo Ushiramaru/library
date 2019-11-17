@@ -65,7 +65,7 @@ public class LibraryServiceImpl implements LibraryService {
         DAOFactory factory = DAOFactory.getInstance();
         EditionDAO dao = factory.getXmlPrintEditionDAO();
 
-        String response = "";
+        String response;
         try {
             StringBuilder stringBuilder = new StringBuilder();
             ArrayList<Edition> editions = dao.showEdition();
@@ -78,6 +78,7 @@ public class LibraryServiceImpl implements LibraryService {
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
+
         return response;
     }
 
@@ -86,7 +87,7 @@ public class LibraryServiceImpl implements LibraryService {
         DAOFactory factory = DAOFactory.getInstance();
         EditionDAO dao = factory.getXmlPrintEditionDAO();
 
-        String response = "";
+        String response;
         try {
             StringBuilder stringBuilder = new StringBuilder();
             ArrayList<Edition> editions = dao.showEdition();
@@ -101,6 +102,7 @@ public class LibraryServiceImpl implements LibraryService {
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
+
         return response;
     }
 

@@ -20,7 +20,7 @@ public class Newspaper extends PrintEdition {
      * Instantiates a new Newspaper.
      */
     public Newspaper() {
-
+        setEditionType(EditionType.NEWSPAPER);
     }
 
     /**
