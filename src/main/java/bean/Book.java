@@ -4,16 +4,20 @@ import bean.enums.EditionType;
 import bean.enums.Genre;
 import bean.enums.ListFormat;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.Objects;
 
 /**
  * The type Book.
  */
-@XmlType(name = "book")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "book", propOrder = {
+        "genre"
+})
 public class Book extends PrintEdition {
 
+    @XmlElement(name = "genre", required = true)
+    @XmlSchemaType(name = "string")
     private Genre genre;
 
     /**
@@ -34,7 +38,7 @@ public class Book extends PrintEdition {
      * @param publicationYear the publication year
      * @param genre           the genre
      */
-    public Book(EditionType editionType, long id, String title, ListFormat listFormat, int listCount, int publicationYear, Genre genre) {
+    public Book(EditionType editionType, String id, String title, ListFormat listFormat, int listCount, int publicationYear, Genre genre) {
         super(editionType, id, title, listFormat, listCount, publicationYear);
         this.genre = genre;
     }
@@ -53,7 +57,6 @@ public class Book extends PrintEdition {
      *
      * @param genre the genre
      */
-    @XmlElement(name = "genre")
     public void setGenre(Genre genre) {
         this.genre = genre;
     }

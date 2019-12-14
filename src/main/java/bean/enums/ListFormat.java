@@ -1,8 +1,13 @@
 package bean.enums;
 
+import javax.xml.bind.annotation.XmlEnum;
+import javax.xml.bind.annotation.XmlType;
+
 /**
  * The enum List format.
  */
+@XmlType(name = "listFormat")
+@XmlEnum
 public enum ListFormat {
 
     /**

@@ -15,7 +15,7 @@ public class EditedEdition implements Command {
     public String execute(String request) {
         String response;
         try {
-            long id = Long.valueOf(request.substring(request.indexOf(paramDelimiter) + 1, request.indexOf(paramDelimiter, request.indexOf(paramDelimiter) + 1)));
+            String id = request.substring(request.indexOf(paramDelimiter) + 1, request.indexOf(paramDelimiter, request.indexOf(paramDelimiter) + 1));
 
             Edition edition = EditionCreator.valueOf(request.substring(request.indexOf(paramDelimiter, request.indexOf(paramDelimiter) + 1) + 1));
 

@@ -22,13 +22,17 @@ public enum CommandName {
      */
     ADD_NEW_EDITION,
     /**
+     * Migrate command name.
+     */
+    MIGRATE,
+    /**
      * Edited edition command name.
      */
     EDITED_EDITION,
     /**
-     * Delete edition command name.
+     * Delete edition type command name.
      */
-    DELETE_EDITION,
+    DELETE_EDITION_TYPE,
     /**
      * Show editions command name.
      */

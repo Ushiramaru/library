@@ -1,9 +1,10 @@
 package dao;
 
 import bean.Edition;
+import bean.enums.EditionType;
 import dao.exception.DAOException;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The interface Edition dao.
@@ -19,28 +20,36 @@ public interface EditionDAO {
     void addEdition(Edition edition) throws DAOException;
 
     /**
+     * Migrate.
+     *
+     * @throws DAOException the dao exception
+     */
+    void migrate() throws DAOException;
+
+    /**
      * Edited edition.
      *
      * @param id      the id
      * @param edition the edition
      * @throws DAOException the dao exception
      */
-    void editedEdition(long id, Edition edition) throws DAOException;
+    void editedEdition(String id, Edition edition) throws DAOException;
 
     /**
      * Delete edition.
      *
-     * @param id the id
+     * @param id          the id
+     * @param editionType the edition type
      * @throws DAOException the dao exception
      */
-    void deleteEdition(long id) throws DAOException;
+    void deleteEdition(String id, EditionType editionType) throws DAOException;
 
     /**
-     * Show edition array list.
+     * Show edition list.
      *
-     * @return the array list
+     * @return the list
      * @throws DAOException the dao exception
      */
-    ArrayList<Edition> showEdition() throws DAOException;
+    List<Edition> showEdition() throws DAOException;
 
 }

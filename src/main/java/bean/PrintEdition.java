@@ -3,18 +3,29 @@ package bean;
 import bean.enums.EditionType;
 import bean.enums.ListFormat;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.Objects;
 
 /**
  * The type Print edition.
  */
-@XmlType(name = "printEdition")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "print-edition", propOrder = {
+        "listFormat",
+        "listCount",
+        "publicationYear",
+})
+@XmlSeeAlso({
+        Book.class, Encyclopedia.class, Newspaper.class
+})
 public class PrintEdition extends Edition {
 
+    @XmlElement(name = "list-format", required = true)
+    @XmlSchemaType(name = "string")
     private ListFormat listFormat;
+    @XmlElement(name = "list-count", required = true)
     private int listCount;
+    @XmlElement(name = "publication-year", required = true)
     private int publicationYear;
 
     /**
@@ -34,7 +45,7 @@ public class PrintEdition extends Edition {
      * @param listCount       the list count
      * @param publicationYear the publication year
      */
-    public PrintEdition(EditionType editionType, long id, String title, ListFormat listFormat, int listCount, int publicationYear) {
+    public PrintEdition(EditionType editionType, String id, String title, ListFormat listFormat, int listCount, int publicationYear) {
         super(editionType, id, title);
         this.listFormat = listFormat;
         this.listCount = listCount;
@@ -55,7 +66,6 @@ public class PrintEdition extends Edition {
      *
      * @param listFormat the list format
      */
-    @XmlElement(name = "listFormat")
     public void setListFormat(ListFormat listFormat) {
         this.listFormat = listFormat;
     }
@@ -74,7 +84,6 @@ public class PrintEdition extends Edition {
      *
      * @param listCount the list count
      */
-    @XmlElement(name = "listCount")
     public void setListCount(int listCount) {
         this.listCount = listCount;
     }
@@ -93,7 +102,6 @@ public class PrintEdition extends Edition {
      *
      * @param publicationYear the publication year
      */
-    @XmlElement(name = "publicationYear")
     public void setPublicationYear(int publicationYear) {
         this.publicationYear = publicationYear;
     }

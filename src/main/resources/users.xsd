@@ -1,63 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-    <xs:element name="users" type="usersList"/>
+    <xs:element name="users" type="users"/>
 
-    <xs:complexType name="usersList" final="extension restriction">
-        <xs:complexContent>
-            <xs:extension base="arrayList">
-                <xs:sequence>
-                    <xs:element name="user" type="user" minOccurs="0" maxOccurs="unbounded"/>
-                </xs:sequence>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-
-    <xs:complexType name="arrayList">
-        <xs:complexContent>
-            <xs:extension base="abstractList">
-                <xs:sequence/>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-
-    <xs:complexType name="abstractList" abstract="true">
-        <xs:complexContent>
-            <xs:extension base="abstractCollection">
-                <xs:sequence/>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-
-    <xs:complexType name="abstractCollection" abstract="true">
-        <xs:sequence/>
+    <xs:complexType name="users">
+        <xs:sequence>
+            <xs:element name="user" type="user" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
     </xs:complexType>
 
     <xs:complexType name="user">
         <xs:sequence>
-            <xs:element name="login">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:minLength value="3"/>
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
-            <xs:element name="password">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:minLength value="8"/>
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
+            <xs:element name="login" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+            <xs:element name="age" type="xs:int"/>
         </xs:sequence>
-        <xs:attribute name="age" use="required">
-            <xs:simpleType>
-                <xs:restriction base="xs:int">
-                    <xs:minInclusive value="14"/>
-                </xs:restriction>
-            </xs:simpleType>
-        </xs:attribute>
     </xs:complexType>
-
 </xs:schema>
-

@@ -16,14 +16,14 @@ class EditionCreator {
      * @return the edition
      * @throws IllegalArgumentException the illegal argument exception
      */
-    static Edition valueOf(String s) throws IllegalArgumentException{
+    static Edition valueOf(String s) throws IllegalArgumentException {
         int indexStart = s.indexOf(Command.paramDelimiter) + 1;
         int indexEnd = s.indexOf(Command.paramDelimiter, indexStart);
         EditionType type = EditionType.valueOf(s.substring(indexStart, indexEnd).toUpperCase());
 
         indexStart = indexEnd + 1;
         indexEnd = s.indexOf(Command.paramDelimiter, indexStart);
-        long id = Long.valueOf(s.substring(indexStart, indexEnd));
+        String id = s.substring(indexStart, indexEnd);
 
         indexStart = indexEnd + 1;
         indexEnd = s.indexOf(Command.paramDelimiter, indexStart);
@@ -41,9 +41,6 @@ class EditionCreator {
         indexEnd = s.indexOf(Command.paramDelimiter, indexStart);
         int publicationYear = Integer.valueOf(s.substring(indexStart, indexEnd));
 
-        if (id < 0 || listCount < 1 || publicationYear < 0) {
-            throw new IllegalArgumentException();
-        }
         Edition edition;
         switch (type) {
             case PRINT_EDITION:

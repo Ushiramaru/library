@@ -1,14 +1,15 @@
 package service.impl;
 
 import bean.Edition;
+import bean.enums.EditionType;
+import dao.EditionDAO;
 import dao.exception.DAOException;
 import dao.factory.DAOFactory;
-import dao.EditionDAO;
 import service.EditionComparatorProvider;
 import service.LibraryService;
 import service.exeption.ServiceException;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The type Library service.
@@ -28,11 +29,25 @@ public class LibraryServiceImpl implements LibraryService {
             dao.addEdition(edition);
         } catch (DAOException e) {
             throw new ServiceException(e);
+
+
         }
     }
 
     @Override
-    public void editedEdition(long id, Edition edition) throws ServiceException {
+    public void migrate() throws ServiceException {
+        DAOFactory factory = DAOFactory.getInstance();
+        EditionDAO dao = factory.getXmlPrintEditionDAO();
+
+        try {
+            dao.migrate();
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public void editedEdition(String id, Edition edition) throws ServiceException {
         if (edition == null) {
             throw new ServiceException("Unknown edition's type");
         }
@@ -49,12 +64,12 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    public void deleteEdition(long id) throws ServiceException {
+    public void deleteEdition(String id, EditionType editionType) throws ServiceException {
         DAOFactory factory = DAOFactory.getInstance();
         EditionDAO dao = factory.getXmlPrintEditionDAO();
 
         try {
-            dao.deleteEdition(id);
+            dao.deleteEdition(id, editionType);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -68,7 +83,7 @@ public class LibraryServiceImpl implements LibraryService {
         String response;
         try {
             StringBuilder stringBuilder = new StringBuilder();
-            ArrayList<Edition> editions = dao.showEdition();
+            List<Edition> editions = dao.showEdition();
             for (Edition edition : editions) {
                 stringBuilder.append(edition.toString());
                 stringBuilder.append('\n');
@@ -90,7 +105,7 @@ public class LibraryServiceImpl implements LibraryService {
         String response;
         try {
             StringBuilder stringBuilder = new StringBuilder();
-            ArrayList<Edition> editions = dao.showEdition();
+            List<Edition> editions = dao.showEdition();
             EditionComparatorProvider comparatorProvider = EditionComparatorProvider.getInstance();
             editions.sort(comparatorProvider.getComparator(comparatorName.toUpperCase()));
             for (Edition edition : editions) {

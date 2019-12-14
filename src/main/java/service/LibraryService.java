@@ -1,6 +1,7 @@
 package service;
 
 import bean.Edition;
+import bean.enums.EditionType;
 import service.exeption.ServiceException;
 
 /**
@@ -17,21 +18,29 @@ public interface LibraryService {
     void addNewEdition(Edition edition) throws ServiceException;
 
     /**
+     * Migrate.
+     *
+     * @throws ServiceException the service exception
+     */
+    void migrate() throws ServiceException;
+
+    /**
      * Edited edition.
      *
      * @param id      the id
      * @param edition the edition
      * @throws ServiceException the service exception
      */
-    void editedEdition(long id, Edition edition) throws ServiceException;
+    void editedEdition(String id, Edition edition) throws ServiceException;
 
     /**
      * Delete edition.
      *
-     * @param id the id
+     * @param id          the id
+     * @param editionType the edition type
      * @throws ServiceException the service exception
      */
-    void deleteEdition(long id) throws ServiceException;
+    void deleteEdition(String id, EditionType editionType) throws ServiceException;
 
     /**
      * Show edition string.

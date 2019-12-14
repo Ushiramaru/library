@@ -2,26 +2,39 @@ package bean;
 
 import bean.enums.EditionType;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.Objects;
 
 /**
  * The type Edition.
  */
-@XmlType(name = "edition")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "edition", propOrder = {
+        "title",
+        "editionType",
+})
+@XmlSeeAlso({
+        PrintEdition.class
+})
 public abstract class Edition implements Comparable<Edition> {
 
-    private long id;
+    @XmlAttribute(name = "id")
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlID
+    @XmlSchemaType(name = "ID")
+    private String id;
+    @XmlElement(name = "title", required = true)
     private String title;
+    @XmlElement(name = "edition-type", required = true)
     private EditionType editionType;
 
     /**
      * Instantiates a new Edition.
      */
     public Edition() {
+
     }
 
     /**
@@ -31,7 +44,7 @@ public abstract class Edition implements Comparable<Edition> {
      * @param id          the id
      * @param title       the title
      */
-    public Edition(EditionType editionType, long id, String title) {
+    public Edition(EditionType editionType, String id, String title) {
         this.editionType = editionType;
         this.id = id;
         this.title = title;
@@ -61,7 +74,7 @@ public abstract class Edition implements Comparable<Edition> {
      *
      * @return the id
      */
-    public long getId() {
+    public String getId() {
         return id;
     }
 
@@ -70,8 +83,7 @@ public abstract class Edition implements Comparable<Edition> {
      *
      * @param id the id
      */
-    @XmlAttribute(name = "id")
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -89,7 +101,6 @@ public abstract class Edition implements Comparable<Edition> {
      *
      * @param title the title
      */
-    @XmlElement(name = "title")
     public void setTitle(String title) {
         this.title = title;
     }
@@ -99,7 +110,7 @@ public abstract class Edition implements Comparable<Edition> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Edition edition = (Edition) o;
-        return id == edition.id &&
+        return id.equals(edition.id) &&
                 title.equals(edition.title) &&
                 editionType == edition.editionType;
     }

@@ -4,16 +4,20 @@ import bean.enums.EditionType;
 import bean.enums.EncyclopediaType;
 import bean.enums.ListFormat;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.Objects;
 
 /**
  * The type Encyclopedia.
  */
-@XmlType(name = "encyclopedia")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "encyclopedia", propOrder = {
+        "encyclopediaType"
+})
 public class Encyclopedia extends PrintEdition {
 
+    @XmlElement(name = "encyclopedia-type", required = true)
+    @XmlSchemaType(name = "string")
     private EncyclopediaType encyclopediaType;
 
     /**
@@ -34,7 +38,7 @@ public class Encyclopedia extends PrintEdition {
      * @param publicationYear  the publication year
      * @param encyclopediaType the encyclopedia type
      */
-    public Encyclopedia(EditionType editionType, long id, String title, ListFormat listFormat, int listCount, int publicationYear, EncyclopediaType encyclopediaType) {
+    public Encyclopedia(EditionType editionType, String id, String title, ListFormat listFormat, int listCount, int publicationYear, EncyclopediaType encyclopediaType) {
         super(editionType, id, title, listFormat, listCount, publicationYear);
         this.encyclopediaType = encyclopediaType;
     }
@@ -53,7 +57,6 @@ public class Encyclopedia extends PrintEdition {
      *
      * @param encyclopediaType the encyclopedia type
      */
-    @XmlElement(name = "encyclopediaType")
     public void setEncyclopediaType(EncyclopediaType encyclopediaType) {
         this.encyclopediaType = encyclopediaType;
     }

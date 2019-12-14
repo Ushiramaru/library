@@ -11,11 +11,13 @@ import dao.impl.*;
 public final class DAOFactory {
 
     private static final DAOFactory instance = new DAOFactory();
-    private final EditionDAO xmlPrintEditionDAO = new XMLEditionDAO(
-            new XMLValidatorByXSD("D:\\library\\src\\main\\resources\\editions.xsd"),
+    private final EditionDAO xmlPrintEditionDAO =
+//            new SQLEditionDAO("library", "root", "");
+            new XMLEditionDAO(
+            new XMLValidatorByXSD("D:\\library\\src\\main\\resources\\a.xsd"),
             "D:\\library\\src\\main\\resources\\editions.xml");
     private final UserDAO xmlUserDAO = new XMLUserDAO(
-            new XMLValidatorByXSD("D:\\library\\src\\main\\resources\\users.xsd"),
+            new XMLValidatorByXSD("D:\\library\\src\\main\\resources\\s.xsd"),
             "D:\\library\\src\\main\\resources\\users.xml");
 
     private DAOFactory() {

@@ -2,7 +2,7 @@ package dao.impl;
 
 import bean.User;
 import dao.UserDAO;
-import dao.UsersList;
+import dao.Users;
 import dao.XMLValidator;
 import dao.exception.DAOException;
 
@@ -33,7 +33,7 @@ public class XMLUserDAO implements UserDAO {
         this.xmlValidator = xmlValidator;
         this.xmlFileName = xmlFileName;
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(UsersList.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(Users.class);
             unmarshaller = jaxbContext.createUnmarshaller();
             marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -42,10 +42,10 @@ public class XMLUserDAO implements UserDAO {
         }
     }
 
-    private UsersList read() throws DAOException {
+    private Users read() throws DAOException {
         if (xmlValidator.isValid(xmlFileName)) {
             try {
-                return (UsersList) unmarshaller.unmarshal(new File(xmlFileName));
+                return (Users) unmarshaller.unmarshal(new File(xmlFileName));
             } catch (JAXBException e) {
                 throw new DAOException("Invalid xml");
             }
@@ -53,7 +53,7 @@ public class XMLUserDAO implements UserDAO {
         throw new DAOException("Invalid xml");
     }
 
-    private void write(UsersList users) {
+    private void write(Users users) {
         try {
             marshaller.marshal(users, new File(xmlFileName));
         } catch (JAXBException ignored) {
@@ -63,7 +63,7 @@ public class XMLUserDAO implements UserDAO {
 
     @Override
     public User signIn(String login, String password) throws DAOException {
-        UsersList users = read();
+        Users users = read();
         for (User user : users.getUsers()) {
             if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
                 return user;
@@ -74,13 +74,13 @@ public class XMLUserDAO implements UserDAO {
 
     @Override
     public void registration(User user) throws DAOException {
-        UsersList users = read();
+        Users users = read();
         for (User u : users.getUsers()) {
             if (u.getLogin().equals(user.getLogin())) {
                 throw new DAOException("This login already exist");
             }
         }
-        users.add(user);
+        users.getUsers().add(user);
         write(users);
     }
 

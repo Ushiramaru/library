@@ -4,16 +4,20 @@ import bean.enums.EditionType;
 import bean.enums.ListFormat;
 import bean.enums.NewspaperType;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.Objects;
 
 /**
  * The type Newspaper.
  */
-@XmlType(name = "newspaper")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "newspaper", propOrder = {
+        "newspaperType"
+})
 public class Newspaper extends PrintEdition {
 
+    @XmlElement(name = "newspaper-type", required = true)
+    @XmlSchemaType(name = "string")
     private NewspaperType newspaperType;
 
     /**
@@ -34,7 +38,7 @@ public class Newspaper extends PrintEdition {
      * @param publicationYear the publication year
      * @param newspaperType   the newspaper type
      */
-    public Newspaper(EditionType editionType, long id, String title, ListFormat listFormat, int listCount, int publicationYear, NewspaperType newspaperType) {
+    public Newspaper(EditionType editionType, String id, String title, ListFormat listFormat, int listCount, int publicationYear, NewspaperType newspaperType) {
         super(editionType, id, title, listFormat, listCount, publicationYear);
         this.newspaperType = newspaperType;
     }
@@ -53,7 +57,6 @@ public class Newspaper extends PrintEdition {
      *
      * @param newspaperType the newspaper type
      */
-    @XmlElement(name = "newspaperType")
     public void setNewspaperType(NewspaperType newspaperType) {
         this.newspaperType = newspaperType;
     }

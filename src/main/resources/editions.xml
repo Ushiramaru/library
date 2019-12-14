@@ -1,30 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <editions>
-    <edition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="printEdition" id="0">
+    <print-edition id="AAAAA">
         <title>some_0</title>
-        <listCount>10</listCount>
-        <listFormat>A4</listFormat>
-        <publicationYear>1999</publicationYear>
-    </edition>
-    <edition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="book" id="1">
+        <edition-type>PRINT_EDITION</edition-type>
+        <list-format>A4</list-format>
+        <list-count>10</list-count>
+        <publication-year>1999</publication-year>
+    </print-edition>
+    <book id="AAAAB">
         <title>some_1</title>
-        <listCount>10</listCount>
-        <listFormat>A4</listFormat>
-        <publicationYear>1599</publicationYear>
+        <edition-type>BOOK</edition-type>
+        <list-format>A4</list-format>
+        <list-count>10</list-count>
+        <publication-year>1599</publication-year>
         <genre>DETECTIVE</genre>
-    </edition>
-    <edition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="newspaper" id="2">
+    </book>
+    <newspaper id="AAAAC">
         <title>some_2</title>
-        <listCount>120</listCount>
-        <listFormat>A2</listFormat>
-        <publicationYear>1989</publicationYear>
-        <newspaperType>YELLOW</newspaperType>
-    </edition>
-    <edition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="encyclopedia" id="3">
+        <edition-type>NEWSPAPER</edition-type>
+        <list-format>A2</list-format>
+        <list-count>120</list-count>
+        <publication-year>1989</publication-year>
+        <newspaper-type>YELLOW</newspaper-type>
+    </newspaper>
+    <encyclopedia id="AAAAD">
         <title>some_3</title>
-        <listCount>110</listCount>
-        <listFormat>A4</listFormat>
-        <publicationYear>1699</publicationYear>
-        <encyclopediaType>TECHNOLOGY</encyclopediaType>
-    </edition>
+        <edition-type>ENCYCLOPEDIA</edition-type>
+        <list-format>A4</list-format>
+        <list-count>110</list-count>
+        <publication-year>1699</publication-year>
+        <encyclopedia-type>TECHNOLOGY</encyclopedia-type>
+    </encyclopedia>
 </editions>

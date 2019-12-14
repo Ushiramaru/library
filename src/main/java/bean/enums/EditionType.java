@@ -1,8 +1,13 @@
 package bean.enums;
 
+import javax.xml.bind.annotation.XmlEnum;
+import javax.xml.bind.annotation.XmlType;
+
 /**
  * The enum Edition type.
  */
+@XmlType(name = "editionType")
+@XmlEnum
 public enum EditionType {
 
     /**

@@ -13,7 +13,7 @@ public final class EditionComparatorProvider {
 
     private static final EditionComparatorProvider instance = new EditionComparatorProvider();
 
-    private static final Comparator<Edition> SORT_EDITION_BY_ID = Comparator.comparingLong(Edition::getId);
+    private static final Comparator<Edition> SORT_EDITION_BY_ID = Comparator.comparing(Edition::getId);
     private static final Comparator<Edition> SORT_EDITION_BY_TITLE_LENGTH = Comparator.comparingInt(o -> o.getTitle().length());
 
     private final Map<EditionComparatorName, Comparator<Edition>> repository = new HashMap<>();

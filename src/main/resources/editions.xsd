@@ -1,78 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-    <xs:element name="editions" type="editionsList"/>
+    <xs:element name="editions" type="editions"/>
 
-    <xs:complexType name="editionsList" final="extension restriction">
+    <xs:complexType name="editions">
+        <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="print-edition" type="print-edition"/>
+                <xs:element name="newspaper" type="newspaper"/>
+                <xs:element name="encyclopedia" type="encyclopedia"/>
+                <xs:element name="book" type="book"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="print-edition">
         <xs:complexContent>
-            <xs:extension base="arrayList">
+            <xs:extension base="edition">
                 <xs:sequence>
-                    <xs:element name="edition" type="edition" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="list-format" type="xs:string"/>
+                    <xs:element name="list-count" type="xs:int"/>
+                    <xs:element name="publication-year" type="xs:int"/>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
-    </xs:complexType>
-
-    <xs:complexType name="arrayList">
-        <xs:complexContent>
-            <xs:extension base="abstractList">
-                <xs:sequence/>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-
-    <xs:complexType name="abstractList" abstract="true">
-        <xs:complexContent>
-            <xs:extension base="abstractCollection">
-                <xs:sequence/>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-
-    <xs:complexType name="abstractCollection" abstract="true">
-        <xs:sequence/>
     </xs:complexType>
 
     <xs:complexType name="edition" abstract="true">
         <xs:sequence>
-            <xs:element name="title">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:minLength value="1"/>
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="edition-type" type="editionType"/>
         </xs:sequence>
-        <xs:attribute name="id" type="xs:long" use="required"/>
-    </xs:complexType>
-
-    <xs:complexType name="printEdition">
-        <xs:complexContent>
-            <xs:extension base="edition">
-                <xs:sequence>
-                    <xs:element name="listCount">
-                        <xs:simpleType>
-                            <xs:restriction base="xs:int">
-                                <xs:minInclusive value="1"/>
-                            </xs:restriction>
-                        </xs:simpleType>
-                    </xs:element>
-                    <xs:element name="listFormat" type="listFormat"/>
-                    <xs:element name="publicationYear">
-                        <xs:simpleType>
-                            <xs:restriction base="xs:int">
-                                <xs:minInclusive value="0"/>
-                            </xs:restriction>
-                        </xs:simpleType>
-                    </xs:element>
-                </xs:sequence>
-            </xs:extension>
-        </xs:complexContent>
+        <xs:attribute name="id" type="xs:ID"/>
     </xs:complexType>
 
     <xs:complexType name="book">
         <xs:complexContent>
-            <xs:extension base="printEdition">
+            <xs:extension base="print-edition">
                 <xs:sequence>
                     <xs:element name="genre" type="genre"/>
                 </xs:sequence>
@@ -82,9 +46,9 @@
 
     <xs:complexType name="encyclopedia">
         <xs:complexContent>
-            <xs:extension base="printEdition">
+            <xs:extension base="print-edition">
                 <xs:sequence>
-                    <xs:element name="encyclopediaType" type="encyclopediaType"/>
+                    <xs:element name="encyclopedia-type" type="xs:string"/>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
@@ -92,9 +56,9 @@
 
     <xs:complexType name="newspaper">
         <xs:complexContent>
-            <xs:extension base="printEdition">
+            <xs:extension base="print-edition">
                 <xs:sequence>
-                    <xs:element name="newspaperType" type="newspaperType"/>
+                    <xs:element name="newspaper-type" type="xs:string"/>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
@@ -106,6 +70,15 @@
             <xs:enumeration value="A2"/>
             <xs:enumeration value="A3"/>
             <xs:enumeration value="A4"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="editionType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PRINT_EDITION"/>
+            <xs:enumeration value="BOOK"/>
+            <xs:enumeration value="ENCYCLOPEDIA"/>
+            <xs:enumeration value="NEWSPAPER"/>
         </xs:restriction>
     </xs:simpleType>
 
@@ -131,6 +104,5 @@
             <xs:enumeration value="YELLOW"/>
         </xs:restriction>
     </xs:simpleType>
-
 </xs:schema>
 
