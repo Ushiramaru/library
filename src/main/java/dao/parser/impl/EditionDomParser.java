@@ -6,7 +6,6 @@ import dao.Editions;
 import dao.parser.XmlParser;
 import dao.parser.exception.ParserException;
 import dao.parser.validator.XmlValidator;
-import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -21,8 +20,6 @@ import java.util.List;
  */
 public class EditionDomParser implements XmlParser<Editions> {
 
-    private final static Logger LOGGER = Logger.getLogger(EditionDomParser.class);
-
     private XmlValidator validator;
 
     /**
@@ -36,7 +33,6 @@ public class EditionDomParser implements XmlParser<Editions> {
 
     public Editions parse(String pathToXml) throws ParserException {
         if (!validator.isValid(pathToXml)) {
-            LOGGER.error("XML doesn't match XSD");
             throw new ParserException("XML doesn't match XSD");
         }
 
@@ -64,7 +60,6 @@ public class EditionDomParser implements XmlParser<Editions> {
 
 
         } catch (Exception e) {
-            LOGGER.error(e.getMessage());
             throw new ParserException(e);
         }
 

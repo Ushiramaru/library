@@ -4,7 +4,6 @@ import dao.Editions;
 import dao.parser.XmlParser;
 import dao.parser.exception.ParserException;
 import dao.parser.validator.XmlValidator;
-import org.apache.log4j.Logger;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -15,8 +14,6 @@ import java.io.File;
  * The type Edition jaxb parser.
  */
 public class EditionJaxbParser implements XmlParser<Editions> {
-
-    private final static Logger LOGGER = Logger.getLogger(EditionJaxbParser.class);
 
     private XmlValidator validator;
 
@@ -32,7 +29,6 @@ public class EditionJaxbParser implements XmlParser<Editions> {
     @Override
     public Editions parse(String pathToXml) throws ParserException {
         if (!validator.isValid(pathToXml)) {
-            LOGGER.error("XML doesn't match XSD");
             throw new ParserException("XML doesn't match XSD");
         }
 
@@ -41,7 +37,6 @@ public class EditionJaxbParser implements XmlParser<Editions> {
             JAXBContext context = JAXBContext.newInstance(Editions.class);
             unmarshaller = context.createUnmarshaller();
         } catch (JAXBException e) {
-            LOGGER.error(e.getMessage());
             throw new ParserException(e);
         }
 
@@ -50,7 +45,6 @@ public class EditionJaxbParser implements XmlParser<Editions> {
             File xmlFile = new File(pathToXml);
             candies = (Editions) unmarshaller.unmarshal(xmlFile);
         } catch (JAXBException e) {
-            LOGGER.error(e.getMessage());
             throw new ParserException(e);
         }
 
